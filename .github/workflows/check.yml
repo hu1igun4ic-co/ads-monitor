@@ -23,8 +23,11 @@ jobs:
       - name: Установить браузер для Playwright
         run: playwright install --with-deps chromium
 
-      - name: Запустить парсер
+    - name: Запустить парсер
         run: python scraper.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: Сохранить изменения обратно в репозиторий
         run: |
