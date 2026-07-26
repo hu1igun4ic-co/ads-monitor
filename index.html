@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ETAGI — мониторинг квартир</title>
+<link href="https://fonts.cdnfonts.com/css/druk-wide" rel="stylesheet">
 <style>
   /* ===== RESET & BASE ===== */
   * {
@@ -16,48 +17,51 @@
     background: #0d1117;
     color: #e6edf3;
     min-height: 100vh;
-    padding: 20px 20px 40px 40px;
+    padding: 20px 20px 40px 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;  /* ВСЁ СМЕЩЕНО ВЛЕВО */
+    align-items: center;  /* ВСЁ ПО ЦЕНТРУ */
   }
 
-  /* ===== ХЕДЕР (ОГРОМНЫЙ) ===== */
+  /* ===== ХЕДЕР (ПО ЦЕНТРУ) ===== */
   .header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 20px;
     width: 100%;
     max-width: 1100px;
   }
 
   .header h1 {
-    font-size: 230px;        /* 23px × 10 */
-    font-weight: 800;
+    font-family: 'Druk Wide', 'Impact', 'Arial Black', sans-serif;
+    font-size: 153px;        /* 230px / 1.5 */
+    font-weight: 700;
     letter-spacing: 4px;
     line-height: 1;
     background: linear-gradient(135deg, #58a6ff, #f0883e);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: -10px;
+    margin-bottom: -8px;
   }
 
   .header .sub {
-    font-size: 70px;          /* 7px × 10 */
+    font-family: 'Druk Wide', 'Impact', 'Arial Black', sans-serif;
+    font-size: 47px;          /* 70px / 1.5 */
     color: #8b949e;
     letter-spacing: 6px;
     text-transform: uppercase;
-    opacity: 0.4;
-    margin-top: -10px;
+    opacity: 0.35;
+    margin-top: -6px;
   }
 
-  /* ===== ФИЛЬТРЫ ===== */
+  /* ===== ФИЛЬТРЫ (ПО ЦЕНТРУ) ===== */
   .filters {
     max-width: 1100px;
     width: 100%;
-    margin: 0 0 16px 0;
+    margin: 0 auto 16px auto;
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    justify-content: center;
     background: #161b22;
     padding: 14px 18px;
     border-radius: 10px;
@@ -90,7 +94,7 @@
 
   /* ===== СЧЁТЧИК ===== */
   .count {
-    text-align: left;
+    text-align: center;
     color: #8b949e;
     font-size: 14px;
     margin-bottom: 14px;
@@ -114,7 +118,7 @@
     padding: 14px 18px;
     border: 1px solid #30363d;
     display: flex;
-    flex-direction: row-reverse;   /* КАРТИНКА СПРАВА */
+    flex-direction: row-reverse;
     align-items: center;
     gap: 18px;
     transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
@@ -156,7 +160,7 @@
     flex-shrink: 0;
   }
 
-  /* ===== ИНФО-БЛОК (РАСШИРЕН) ===== */
+  /* ===== ИНФО-БЛОК ===== */
   .card .info {
     flex: 1;
     min-width: 0;
@@ -165,7 +169,6 @@
     gap: 2px;
   }
 
-  /* АДРЕС — всегда виден */
   .card .address {
     font-size: 17px;
     font-weight: 500;
@@ -179,7 +182,7 @@
   /* ===== СКРЫТЫЙ КОНТЕНТ (ПРИ НАВЕДЕНИИ) ===== */
   .card .hidden-content {
     display: flex;
-    flex-direction: column;    /* ВСЁ ДРУГ ПОД ДРУГОМ */
+    flex-direction: column;
     gap: 4px;
     max-height: 0;
     opacity: 0;
@@ -194,14 +197,12 @@
     margin-top: 6px;
   }
 
-  /* ЦЕНА */
   .card .hidden-content .price {
     font-size: 18px;
     font-weight: 700;
     color: #f0883e;
   }
 
-  /* ТЕЛЕФОН — БОЛЬШОЙ */
   .card .hidden-content .phone {
     font-size: 20px;
     font-weight: 600;
@@ -215,7 +216,6 @@
     letter-spacing: 0.3px;
   }
 
-  /* ССЫЛКА */
   .card .hidden-content .url-link {
     color: #58a6ff;
     text-decoration: none;
@@ -229,7 +229,6 @@
     text-decoration: underline;
   }
 
-  /* БЕЙДЖИ */
   .card .hidden-content .source-badge {
     font-size: 11px;
     font-weight: 600;
@@ -317,6 +316,7 @@
     margin-top: 24px;
     max-width: 1100px;
     width: 100%;
+    justify-content: center;
   }
 
   .pagination button {
@@ -358,8 +358,8 @@
   /* ===== АДАПТИВ ===== */
   @media (max-width: 700px) {
     body { padding: 16px 12px; }
-    .header h1 { font-size: 80px; }
-    .header .sub { font-size: 28px; }
+    .header h1 { font-size: 60px; }
+    .header .sub { font-size: 22px; }
     .card { flex-wrap: wrap; flex-direction: column-reverse; align-items: stretch; }
     .card .preview,
     .card .preview-placeholder {
@@ -372,25 +372,25 @@
   }
 
   @media (max-width: 480px) {
-    .header h1 { font-size: 50px; }
-    .header .sub { font-size: 20px; }
+    .header h1 { font-size: 40px; }
+    .header .sub { font-size: 16px; }
     .card .hidden-content .phone { font-size: 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== ХЕДЕР ===== -->
+<!-- ===== ХЕДЕР (ПО ЦЕНТРУ) ===== -->
 <div class="header">
   <h1>ETAGI</h1>
   <div class="sub">by hu1igun4ic</div>
 </div>
 
-<!-- ===== ФИЛЬТРЫ ===== -->
+<!-- ===== ФИЛЬТРЫ (ПО ЦЕНТРУ) ===== -->
 <div class="filters">
-  <input type="text" id="searchBox" placeholder="🔍 Поиск по адресу...">
-  <input type="number" id="priceMin" placeholder="₽ от">
-  <input type="number" id="priceMax" placeholder="₽ до">
+  <input type="text" id="searchBox" placeholder="Поиск по адресу...">
+  <input type="number" id="priceMin" placeholder="Цена от">
+  <input type="number" id="priceMax" placeholder="Цена до">
 </div>
 
 <p class="count" id="count">Загрузка...</p>
@@ -438,14 +438,14 @@ function render() {
   const pageItems = filtered.slice(start, end);
 
   document.getElementById('count').textContent =
-    `📊 ${filtered.length} объявлений — страница ${currentPage} из ${totalPages}`;
+    filtered.length + ' объявлений — страница ' + currentPage + ' из ' + totalPages;
 
   const list = document.getElementById('list');
   list.innerHTML = '';
 
   if (!pageItems.length) {
     document.getElementById('empty').style.display = 'block';
-    document.getElementById('empty').textContent = allData.length ? '🔍 Ничего не найдено.' : '⏳ Нет данных.';
+    document.getElementById('empty').textContent = allData.length ? 'Ничего не найдено.' : 'Нет данных.';
     document.getElementById('pagination').innerHTML = '';
     return;
   }
@@ -459,15 +459,14 @@ function render() {
     card.className = 'card' + (isNew ? ' new' : '');
 
     const alsoOn = (item.also_on || []).length
-      ? `<span class="also-badge">➕ ${item.also_on.join(', ')}</span>` : '';
+      ? '<span class="also-badge">+ ' + item.also_on.join(', ') + '</span>' : '';
 
     const phone = item.phone || '+7 (3822) XXX-XX-XX';
 
     const previewHtml = item.image
-      ? `<img class="preview" src="${item.image}" alt="Фото" loading="lazy" onerror="this.style.display='none'">`
-      : `<div class="preview-placeholder">🏠</div>`;
+      ? '<img class="preview" src="' + item.image + '" alt="Фото" loading="lazy" onerror="this.style.display=\'none\'">'
+      : '<div class="preview-placeholder">🏠</div>';
 
-    // Уникальный ID для кнопок
     const uid = 'card-' + Date.now() + '-' + index;
 
     card.innerHTML = `
@@ -475,11 +474,11 @@ function render() {
         <div class="address">${item.title}</div>
         <div class="hidden-content">
           <span class="price">${item.price}</span>
-          <span class="phone">📞 ${phone}</span>
+          <span class="phone">${phone}</span>
           <span class="source-badge">${item.source}</span>
-          ${isNew ? '<span class="new-badge">🔥 Новое</span>' : ''}
+          ${isNew ? '<span class="new-badge">Новое</span>' : ''}
           ${alsoOn}
-          <a class="url-link" href="${item.url}" target="_blank">→ Открыть объявление</a>
+          <a class="url-link" href="${item.url}" target="_blank">Открыть объявление</a>
         </div>
         <div class="actions">
           <button class="action-btn" data-id="${uid}" data-action="done">
@@ -496,7 +495,6 @@ function render() {
     list.appendChild(card);
   });
 
-  // ===== ОБРАБОТЧИКИ ДЛЯ КНОПОК =====
   document.querySelectorAll('.action-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -514,7 +512,7 @@ function renderPagination(totalPages) {
   if (totalPages <= 1) return;
 
   const prev = document.createElement('button');
-  prev.textContent = '← Назад';
+  prev.textContent = 'Назад';
   prev.disabled = currentPage === 1;
   prev.addEventListener('click', () => {
     if (currentPage > 1) { currentPage--; render(); }
@@ -533,7 +531,7 @@ function renderPagination(totalPages) {
   }
 
   const next = document.createElement('button');
-  next.textContent = 'Вперёд →';
+  next.textContent = 'Вперёд';
   next.disabled = currentPage === totalPages;
   next.addEventListener('click', () => {
     if (currentPage < totalPages) { currentPage++; render(); }
@@ -541,7 +539,6 @@ function renderPagination(totalPages) {
   container.appendChild(next);
 }
 
-// ===== ЗАГРУЗКА ДАННЫХ =====
 fetch('data.json?_=' + Date.now())
   .then(r => r.json())
   .then(data => {
@@ -551,10 +548,9 @@ fetch('data.json?_=' + Date.now())
   })
   .catch(() => {
     document.getElementById('empty').style.display = 'block';
-    document.getElementById('empty').textContent = '❌ Ошибка загрузки данных.';
+    document.getElementById('empty').textContent = 'Ошибка загрузки данных.';
   });
 
-// ===== ФИЛЬТРЫ С СБРОСОМ СТРАНИЦЫ =====
 document.getElementById('searchBox').addEventListener('input', () => {
   currentPage = 1;
   render();
