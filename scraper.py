@@ -148,6 +148,130 @@ def parse_ru09():
     print(f"[ru09] ИТОГО: {len(results)}")
     return results
 
+# ---------- AVITO (через Playwright для обхода защиты) ----------
+
+AVITO_URL = "https://www.avito.ru/tomsk/kvartiry/prodam/vtorichka-ASgBAgICAkSSA8YQ5geMUg?context=H4sIAAAAAAAA_wEmANn_YToxOntzOjE6InkiO3M6MTY6Inh4ZWp1WjgxRkVMUjdJbEIiO30xbsfcJgAAAA&f=ASgBAQICA0SSA8YQ5geMUpC~DZauNQJAygjE_M8yilmarAGYrAGWrAGUrAGIWYZZhFmCWYBZ_ljAwQ0kvP03uv03&localPriority=0"
+
+def parse_avito(page):
+    """Парсинг Avito с использованием Playwright (для обхода антибота)"""
+    results = []
+    try:
+        print("[Avito] Начинаю загрузку страницы...")
+        page.goto(AVITO_URL, timeout=60000, wait_until='domcontentloaded')
+        
+        # Ждём загрузки карточек (увеличил время)
+        page.wait_for_timeout(8000)
+        
+        # Прокрутка вниз для подгрузки всех объявлений
+        for _ in range(3):
+            page.mouse.wheel(0, 800)
+            page.wait_for_timeout(1500)
+        
+        # Ждём появления карточек
+        try:
+            page.wait_for_selector('[data-marker="item"]', timeout=15000)
+        except:
+            print("[Avito] Карточки не найдены, пробую альтернативный селектор...")
+            page.wait_for_selector('[class*="item"]', timeout=10000)
+        
+        print("[Avito] Начинаю сбор данных...")
+        
+        # Используем evaluate для извлечения данных
+        items_data = page.evaluate('''
+            () => {
+                // Пробуем разные селекторы для карточек
+                let cards = document.querySelectorAll('[data-marker="item"]');
+                if (cards.length === 0) {
+                    cards = document.querySelectorAll('[class*="item"]');
+                }
+                
+                const result = [];
+                cards.forEach(card => {
+                    // Название
+                    let title = '';
+                    const titleEl = card.querySelector('[itemprop="name"]') || 
+                                   card.querySelector('[data-marker="item-title"]');
+                    if (titleEl) title = titleEl.innerText?.trim() || titleEl.textContent?.trim() || '';
+                    
+                    // Цена
+                    let price = '';
+                    const priceEl = card.querySelector('[itemprop="price"]') ||
+                                   card.querySelector('[data-marker="item-price"]');
+                    if (priceEl) {
+                        price = priceEl.getAttribute('content') || priceEl.innerText?.trim() || '';
+                    }
+                    
+                    // Ссылка
+                    let url = '';
+                    const linkEl = card.querySelector('[data-marker="item-title"]') || 
+                                  card.querySelector('a[href*="/avito/"]') ||
+                                  card.querySelector('a[href*="/tomsk/"]');
+                    if (linkEl) {
+                        url = linkEl.getAttribute('href') || '';
+                        if (url && !url.startsWith('http')) {
+                            url = 'https://www.avito.ru' + url;
+                        }
+                    }
+                    
+                    // Адрес/метро
+                    let address = '';
+                    const addrEl = card.querySelector('[data-marker="item-address"]') ||
+                                  card.querySelector('[class*="address"]') ||
+                                  card.querySelector('[class*="metro"]');
+                    if (addrEl) address = addrEl.innerText?.trim() || '';
+                    
+                    // Комнатность
+                    let rooms = '';
+                    const roomsMatch = title.match(/(\\d+)-комнатн|Студия/i);
+                    if (roomsMatch) rooms = roomsMatch[0];
+                    
+                    result.push({
+                        title: title || 'Квартира',
+                        price: price || 'Цена не указана',
+                        url: url || '',
+                        address: address || '',
+                        rooms: rooms || ''
+                    });
+                });
+                return result;
+            }
+        ''')
+        
+        # Форматируем данные под единый формат
+        for item in items_data:
+            if not item.get('url'):
+                continue
+                
+            # Формируем полный заголовок
+            full_title = item['title']
+            if item.get('address'):
+                full_title += f" — {item['address']}"
+            if item.get('rooms'):
+                full_title = f"{item['rooms']}, {full_title}"
+            
+            results.append({
+                "id": make_id("avito", item['url']),
+                "source": "Avito",
+                "title": full_title,
+                "price": item['price'],
+                "url": item['url'],
+            })
+        
+        print(f"[Avito] Собрано {len(results)} объявлений")
+        
+    except Exception as e:
+        print(f"[Avito] Ошибка: {e}")
+        # Диагностика: сохраняем HTML для отладки
+        try:
+            html = page.content()
+            with open("avito_debug.html", "w", encoding="utf-8") as f:
+                f.write(html[:5000])
+            print("[Avito] Сохранён debug-файл avito_debug.html")
+        except:
+            pass
+    
+    return results
+
 # ---------- sibdom.ru (обычный HTML, requests хватает) ----------
 
 def parse_sibdom():
@@ -280,16 +404,38 @@ def main():
     existing_ids = {item["id"] for item in existing}
     existing_by_id = {item["id"]: item for item in existing}
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page(user_agent=HEADERS["User-Agent"], locale="ru-RU")
-        cian_items = parse_cian(page)
-        browser.close()
+with sync_playwright() as p:
+    browser = p.chromium.launch(
+        headless=True,
+        args=['--disable-blink-features=AutomationControlled', '--no-sandbox']
+    )
+    page = browser.new_page(
+        user_agent=HEADERS["User-Agent"],
+        locale="ru-RU",
+        viewport={'width': 1920, 'height': 1080}
+    )
+    page.add_init_script("""
+        Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+    """)
+    
+    cian_items = parse_cian(page)
+    
+    avito_page = browser.new_page(
+        user_agent=HEADERS["User-Agent"],
+        locale="ru-RU",
+        viewport={'width': 1920, 'height': 1080}
+    )
+    avito_page.add_init_script("""
+        Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+    """)
+    avito_items = parse_avito(avito_page)
+    
+    browser.close()
 
     ru09_items = parse_ru09()
     sibdom_items = parse_sibdom()
 
-    fresh = cian_items + ru09_items + sibdom_items
+   fresh = cian_items + ru09_items + sibdom_items + avito_items
 
     now = datetime.now(timezone.utc).isoformat()
     merged = []
