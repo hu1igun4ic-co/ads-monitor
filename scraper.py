@@ -2,7 +2,6 @@ import os
 import json
 import re
 import hashlib
-import random
 from datetime import datetime, timezone
 
 import requests
@@ -20,21 +19,6 @@ HEADERS = {
     "Accept-Language": "ru-RU,ru;q=0.9",
 }
 
-# Список прокси для Avito (из вашего списка)
-PROXY_LIST = [
-  {"server": "http://103.82.20.76:8080"},     # Вьетнам (yes)
-    {"server": "http://52.33.78.11:8080"},      # США (yes)
-    {"server": "http://139.99.95.120:8080"},    # Сингапур (yes)
-    {"server": "http://176.99.134.183:8090"},   # Россия (yes)
-    {"server": "http://65.108.159.129:8081"},   # Финляндия (yes)
-    {"server": "http://129.226.72.101:18080"},  # Гонконг (yes)
-    {"server": "http://185.239.50.122:10808"},  # Россия (yes)
-    {"server": "socks5://31.28.4.192:1080"},
-    {"server": "socks5://87.228.89.21:1080"},
-]
-def get_random_proxy():
-    """Возвращает случайный прокси из списка"""
-    return random.choice(PROXY_LIST)
 
 def load_existing():
     try:
@@ -53,8 +37,7 @@ def make_id(source, url):
     return hashlib.md5(f"{source}:{url}".encode()).hexdigest()
 
 
-# ---------- ЦИАН (нужен JS, используем Playwright) ----------
-
+# ---------- ЦИАН ----------
 def parse_cian(page):
     results = []
     try:
@@ -97,8 +80,8 @@ def parse_cian(page):
     print(f"[Циан] ИТОГО: {len(results)}")
     return results
 
-# ---------- ru09.ru (обычный HTML, requests хватает) ----------
 
+# ---------- RU09 ----------
 def parse_ru09():
     results = []
     try:
@@ -164,155 +147,8 @@ def parse_ru09():
     print(f"[ru09] ИТОГО: {len(results)}")
     return results
 
-# ---------- AVITO (через Playwright для обхода защиты) ----------
 
-AVITO_URL = "https://www.avito.ru/tomsk/kvartiry/prodam/vtorichka-ASgBAgICAkSSA8YQ5geMUg?context=H4sIAAAAAAAA_wEmANn_YToxOntzOjE6InkiO3M6MTY6Inh4ZWp1WjgxRkVMUjdJbEIiO30xbsfcJgAAAA&f=ASgBAQICA0SSA8YQ5geMUpC~DZauNQJAygjE_M8yilmarAGYrAGWrAGUrAGIWYZZhFmCWYBZ_ljAwQ0kvP03uv03&localPriority=0"
-
-def parse_avito(page):
-    """Парсинг Avito с использованием Playwright (для обхода антибота)"""
-    results = []
-    try:
-        print("[Avito] Начинаю загрузку страницы...")
-        
-        # Переходим на страницу
-        page.goto(AVITO_URL, timeout=60000, wait_until='domcontentloaded')
-        
-        # Ждём загрузки
-        page.wait_for_timeout(5000)
-        
-        # Проверяем IP (узнаём, какой IP видит Avito)
-        try:
-            ip = page.evaluate('''() => {
-                return fetch('https://api.ipify.org?format=json')
-                    .then(r => r.json())
-                    .then(data => data.ip);
-            }''')
-            print(f"[Avito] Текущий IP: {ip}")
-        except:
-            print("[Avito] Не удалось определить IP")
-        
-        # Прокручиваем страницу вниз
-        for _ in range(5):
-            page.mouse.wheel(0, 1000)
-            page.wait_for_timeout(1000)
-        
-        # СПОСОБ 1: Ищем все ссылки на объявления
-        print("[Avito] Ищу ссылки на объявления...")
-        links = page.query_selector_all('a[href*="/avito/"]')
-        print(f"[Avito] Найдено ссылок: {len(links)}")
-        
-        if links:
-            for link in links[:50]:
-                try:
-                    href = link.get_attribute('href')
-                    if not href or '/avito/' not in href:
-                        continue
-                        
-                    url = href if href.startswith('http') else 'https://www.avito.ru' + href
-                    title = link.inner_text().strip()
-                    
-                    if not title or len(title) < 5:
-                        continue
-                    
-                    # Пробуем найти цену рядом
-                    price = "Цена не указана"
-                    parent = link
-                    for _ in range(3):
-                        parent = parent.query_selector('xpath=..')
-                        if not parent:
-                            break
-                        price_el = parent.query_selector('[class*="price"]') or \
-                                  parent.query_selector('[itemprop="price"]')
-                        if price_el:
-                            price_text = price_el.inner_text().strip()
-                            if price_text:
-                                price = price_text
-                                break
-                    
-                    results.append({
-                        "id": make_id("avito", url),
-                        "source": "Avito",
-                        "title": title[:200],
-                        "price": price,
-                        "url": url,
-                    })
-                except Exception as e:
-                    continue
-            
-            print(f"[Avito] Собрано через ссылки: {len(results)}")
-            if results:
-                return results
-        
-        # СПОСОБ 2: Если ссылок нет — пробуем карточки
-        print("[Avito] Ссылки не найдены, пробую карточки...")
-        cards = page.query_selector_all('[data-marker="item"]')
-        if not cards:
-            cards = page.query_selector_all('[class*="item"]')
-        
-        if not cards:
-            print("[Avito] Карточки не найдены. Сохраняю avito_debug.html")
-            html = page.content()
-            with open("avito_debug.html", "w", encoding="utf-8") as f:
-                f.write(html[:10000])
-            
-            print("[Avito] ===== НАЧАЛО DEBUG HTML =====")
-            print(html[:3000])
-            print("[Avito] ===== КОНЕЦ DEBUG HTML =====")
-            return results
-        
-        print(f"[Avito] Найдено карточек: {len(cards)}")
-        
-        for card in cards[:50]:
-            try:
-                title_el = card.query_selector('[data-marker="item-title"]') or \
-                          card.query_selector('[itemprop="name"]') or \
-                          card.query_selector('h3')
-                title = title_el.inner_text().strip() if title_el else "Квартира"
-                
-                price_el = card.query_selector('[data-marker="item-price"]') or \
-                          card.query_selector('[itemprop="price"]')
-                price = price_el.inner_text().strip() if price_el else "Цена не указана"
-                
-                link_el = card.query_selector('a[data-marker="item-title"]') or \
-                         card.query_selector('a[href*="/avito/"]') or \
-                         card.query_selector('a')
-                url = ''
-                if link_el:
-                    url = link_el.get_attribute('href')
-                    if url and not url.startswith('http'):
-                        url = 'https://www.avito.ru' + url
-                
-                if not url:
-                    continue
-                
-                results.append({
-                    "id": make_id("avito", url),
-                    "source": "Avito",
-                    "title": title[:200],
-                    "price": price,
-                    "url": url,
-                })
-            except:
-                continue
-        
-        print(f"[Avito] Собрано {len(results)} объявлений")
-        
-    except Exception as e:
-        print(f"[Avito] Ошибка: {e}")
-        try:
-            html = page.content()
-            with open("avito_debug.html", "w", encoding="utf-8") as f:
-                f.write(html[:10000])
-            print("[Avito] ===== НАЧАЛО DEBUG HTML =====")
-            print(html[:3000])
-            print("[Avito] ===== КОНЕЦ DEBUG HTML =====")
-        except:
-            pass
-    
-    return results
-
-# ---------- sibdom.ru (обычный HTML, requests хватает) ----------
-
+# ---------- СИБДОМ ----------
 def parse_sibdom():
     results = []
     try:
@@ -370,7 +206,6 @@ def parse_sibdom():
 
 
 # ---------- Дедупликация ----------
-
 def extract_number(text, pattern):
     if not text:
         return None
@@ -381,7 +216,6 @@ def extract_number(text, pattern):
 
 
 def dedupe(items):
-    """Схлопывает объявления с одинаковой площадью и близкой ценой из разных источников."""
     seen = {}
     result = []
     for item in items:
@@ -403,6 +237,8 @@ def dedupe(items):
         result.append(item)
     return result
 
+
+# ---------- Telegram ----------
 def send_telegram(new_items):
     token = os.environ.get("TELEGRAM_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
@@ -413,7 +249,7 @@ def send_telegram(new_items):
         print("[Telegram] Новых объявлений нет — уведомление не отправляю")
         return
 
-    for item in new_items[:10]:  # не больше 10 сообщений за раз, чтобы не спамить
+    for item in new_items[:10]:
         text = f"🏠 {item['source']}\n{item['title']}\n💰 {item['price']}\n{item['url']}"
         try:
             resp = requests.post(
@@ -438,6 +274,8 @@ def send_telegram(new_items):
 
     print(f"[Telegram] Отправлено уведомлений: {min(len(new_items), 10)}")
 
+
+# ---------- MAIN ----------
 def main():
     existing = load_existing()
     existing_ids = {item["id"] for item in existing}
@@ -448,8 +286,6 @@ def main():
             headless=True,
             args=['--disable-blink-features=AutomationControlled', '--no-sandbox']
         )
-        
-        # Страница для ЦИАН (без прокси)
         page = browser.new_page(
             user_agent=HEADERS["User-Agent"],
             locale="ru-RU",
@@ -459,29 +295,13 @@ def main():
             Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
         """)
         cian_items = parse_cian(page)
-        
-        # Страница для Avito (С ПРОКСИ)
-        proxy = get_random_proxy()
-        print(f"[Avito] Использую прокси: {proxy['server']}")
-        
-        avito_page = browser.new_page(
-            user_agent=HEADERS["User-Agent"],
-            locale="ru-RU",
-            viewport={'width': 1920, 'height': 1080},
-            proxy=proxy  # <-- Прокси для Avito
-        )
-        avito_page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
-        """)
-        avito_items = parse_avito(avito_page)
-        
         browser.close()
 
     ru09_items = parse_ru09()
     sibdom_items = parse_sibdom()
 
-    fresh = cian_items + ru09_items + sibdom_items + avito_items
-    print(f"[Статистика] ЦИАН: {len(cian_items)}, RU09: {len(ru09_items)}, Сибдом: {len(sibdom_items)}, Avito: {len(avito_items)}")
+    fresh = cian_items + ru09_items + sibdom_items
+    print(f"[Статистика] ЦИАН: {len(cian_items)}, RU09: {len(ru09_items)}, Сибдом: {len(sibdom_items)}")
 
     now = datetime.now(timezone.utc).isoformat()
     merged = []
@@ -499,6 +319,7 @@ def main():
     new_items = [i for i in merged if i['id'] not in existing_ids]
     print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {len(new_items)}")
     send_telegram(new_items)
+
 
 if __name__ == "__main__":
     main()
