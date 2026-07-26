@@ -21,9 +21,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Установить браузер для Playwright
-        run: playwright install --with-deps chromium
-
-    - name: Запустить парсер
+        run: playwright install --with-deps chromiu    
+      - name: Запустить парсер
         run: python scraper.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
