@@ -1,103 +1,198 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<title>Квартиры — Циан, RU09, Сибдом</title>
 <style>
-  body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
-  h1 { text-align: center; }
-  .filters { max-width: 1200px; margin: 0 auto 20px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; background: white; padding: 16px; border-radius: 8px; }
-  .filters input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-  .filters input[type="text"] { flex: 1; min-width: 200px; }
-  .filters input[type="number"] { width: 130px; }
-  .count { text-align: center; color: #666; margin-bottom: 16px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; max-width: 1200px; margin: 0 auto; }
-  .card { background: white; border-radius: 8px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-  .card.new { border: 2px solid #e74c3c; }
-  .badge { display: inline-block; background: #3498db; color: white; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; margin-right: 4px; }
-  .badge.also { background: #7f8c8d; }
-  .price { font-weight: bold; font-size: 18px; margin: 8px 0; }
-  a { color: #2980b9; text-decoration: none; }
-  .empty { text-align: center; color: #888; margin-top: 40px; }
-</style>
-</head>
-<body>
-<h1>Квартиры — Циан, RU09, Сибдом</h1>
-
-<div class="filters">
-  <input type="text" id="searchBox" placeholder="Поиск по району/адресу/тексту...">
-  <input type="number" id="priceMin" placeholder="Цена от, ₽">
-  <input type="number" id="priceMax" placeholder="Цена до, ₽">
-</div>
-
-<p class="count" id="count"></p>
-<div id="list" class="grid"></div>
-<p id="empty" class="empty" style="display:none;">Пока нет данных. Дождись первого запуска парсера в Actions.</p>
-
-<script>
-let allData = [];
-
-function priceToNumber(price) {
-  const digits = (price || "").replace(/\D/g, "");
-  return digits ? parseInt(digits, 10) : null;
-}
-
-function render() {
-  const search = document.getElementById('searchBox').value.trim().toLowerCase();
-  const min = parseInt(document.getElementById('priceMin').value) || null;
-  const max = parseInt(document.getElementById('priceMax').value) || null;
-
-  const filtered = allData.filter(item => {
-    if (search && !item.title.toLowerCase().includes(search)) return false;
-    const p = priceToNumber(item.price);
-    if (min && (!p || p < min)) return false;
-    if (max && (!p || p > max)) return false;
-    return true;
-  });
-
-  document.getElementById('count').textContent = `Показано: ${filtered.length} из ${allData.length}`;
-
-  const list = document.getElementById('list');
-  list.innerHTML = '';
-  if (!filtered.length) {
-    document.getElementById('empty').style.display = 'block';
-    document.getElementById('empty').textContent = allData.length ? 'Ничего не найдено по фильтру.' : 'Пока нет данных.';
-    return;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  document.getElementById('empty').style.display = 'none';
 
-  const dayAgo = Date.now() - 24 * 60 * 60 * 1000;
-  filtered.forEach(item => {
-    const isNew = new Date(item.first_seen).getTime() > dayAgo;
-    const card = document.createElement('div');
-    card.className = 'card' + (isNew ? ' new' : '');
-    const alsoOn = (item.also_on || []).length
-      ? `<span class="badge also">Также: ${item.also_on.join(', ')}</span>` : '';
-    card.innerHTML = `
-      <span class="badge">${item.source}</span>
-      ${isNew ? '<span class="badge" style="background:#e74c3c;">Новое</span>' : ''}
-      ${alsoOn}
-      <div>${item.title}</div>
-      <div class="price">${item.price}</div>
-      <a href="${item.url}" target="_blank">Открыть объявление →</a>
-    `;
-    list.appendChild(card);
-  });
-}
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    padding: 20px;
+  }
 
-fetch('data.json?_=' + Date.now())
-  .then(r => r.json())
-  .then(data => {
-    allData = data;
-    render();
-  })
-  .catch(() => {
-    document.getElementById('empty').style.display = 'block';
-  });
+  h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 28px;
+    background: linear-gradient(135deg, #58a6ff, #f0883e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
 
-document.getElementById('searchBox').addEventListener('input', render);
-document.getElementById('priceMin').addEventListener('input', render);
-document.getElementById('priceMax').addEventListener('input', render);
-</script>
-</body>
-</html>
+  .filters {
+    max-width: 1200px;
+    margin: 0 auto 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #161b22;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+  }
+
+  .filters input {
+    padding: 10px 14px;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #0d1117;
+    color: #e6edf3;
+    transition: border 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+
+  .filters input::placeholder {
+    color: #8b949e;
+  }
+
+  .filters input:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+  }
+
+  .filters input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .filters input[type="number"] {
+    width: 140px;
+  }
+
+  .count {
+    text-align: center;
+    color: #8b949e;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .count span {
+    color: #f0883e;
+    font-weight: 600;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #161b22;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid #30363d;
+    transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: #58a6ff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .card.new {
+    border-color: #f0883e;
+    background: #1c1b16;
+  }
+
+  .card .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    width: fit-content;
+    margin-right: 4px;
+  }
+
+  .badge.source {
+    background: #1f6feb;
+    color: #fff;
+  }
+
+  .badge.new-badge {
+    background: #d29922;
+    color: #0d1117;
+  }
+
+  .badge.also {
+    background: #21262d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+  }
+
+  .card .title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 4px 0 2px;
+    color: #f0f6fc;
+  }
+
+  .card .price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f0883e;
+    margin: 4px 0;
+  }
+
+  .card .url-link {
+    color: #58a6ff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 4px;
+    transition: color 0.15s;
+    width: fit-content;
+  }
+
+  .card .url-link:hover {
+    color: #79c0ff;
+    text-decoration: underline;
+  }
+
+  .card .meta {
+    font-size: 12px;
+    color: #8b949e;
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .empty {
+    text-align: center;
+    color: #8b949e;
+    margin-top: 60px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .filters input[type="number"] {
+      width: 100%;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    h1 {
+      font-size: 22px;
+    }
+  }
+</style>
