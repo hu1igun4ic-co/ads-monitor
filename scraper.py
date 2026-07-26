@@ -150,7 +150,7 @@ def parse_ru09():
 
 # ---------- AVITO (через Playwright для обхода защиты) ----------
 
-AVITO_URL = "https://www.avito.ru/tomsk/kvartiry/prodam/vtorichka-ASgBAgICAkSSA8YQ5geMUg?context=H4sIAAAAAAAA_wEmANn_YToxOntzOjE6InkiO3M6MTY6Inh4ZWp1WjgxRkVMUjdJbEIiO30xbsfcJgAAAA&f=ASgBAQICA0SSA8YQ5geMUpC~DZauNQJAygjE_M8yilmarAGYrAGWrAGUrAGIWYZZhFmCWYBZ_ljAwQ0kvP03uv03&localPriority=0"
+AVITO_URL = "https://www.avito.ru/tomsk/kvartiry/prodam/vtorichka-ASgBAgICAkSSA8YQ5geMUg?context=H4sIAAAAAAAA_wEmANn_YToxOntzOjE6InkiO3M6MTY6IllBaERTYURxd0J5Tm5Cc1QiO30t13rSJgAAAA&f=ASgBAgICA0SSA8YQ5geMUpC~DZauNQ"
 
 def parse_avito(page):
     """Парсинг Avito с использованием Playwright (для обхода антибота)"""
@@ -159,9 +159,9 @@ def parse_avito(page):
         print("[Avito] Начинаю загрузку страницы...")
         
         # Переходим на страницу
-        page.goto(AVITO_URL, timeout=60000, wait_until='networkidle')
+        page.goto(AVITO_URL, timeout=60000, wait_until='domcontentloaded')
         
-        # Ждём подольше для загрузки
+        # Ждём загрузки
         page.wait_for_timeout(5000)
         
         # Прокручиваем страницу вниз
@@ -169,65 +169,83 @@ def parse_avito(page):
             page.mouse.wheel(0, 1000)
             page.wait_for_timeout(1000)
         
-        # Пробуем разные селекторы
-        selectors = [
-            '[data-marker="item"]',
-            '[class*="item"]',
-            '[class*="Item"]',
-            '[data-testid="item"]',
-            'div[class*="item"]',
-            'article'
-        ]
+        # СПОСОБ 1: Ищем все ссылки на объявления (самый надёжный)
+        print("[Avito] Ищу ссылки на объявления...")
+        links = page.query_selector_all('a[href*="/avito/"]')
+        print(f"[Avito] Найдено ссылок: {len(links)}")
         
-        cards = []
-        for selector in selectors:
-            try:
-                page.wait_for_selector(selector, timeout=5000)
-                cards = page.query_selector_all(selector)
-                if cards and len(cards) > 0:
-                    print(f"[Avito] Нашёл карточки по селектору: {selector}, {len(cards)} шт.")
-                    break
-            except:
-                continue
+        if links:
+            for link in links[:50]:
+                try:
+                    href = link.get_attribute('href')
+                    if not href or '/avito/' not in href:
+                        continue
+                        
+                    url = href if href.startswith('http') else 'https://www.avito.ru' + href
+                    title = link.inner_text().strip()
+                    
+                    if not title or len(title) < 5:
+                        continue
+                    
+                    # Пробуем найти цену рядом
+                    price = "Цена не указана"
+                    parent = link
+                    for _ in range(3):
+                        parent = parent.query_selector('xpath=..')
+                        if not parent:
+                            break
+                        price_el = parent.query_selector('[class*="price"]') or \
+                                  parent.query_selector('[itemprop="price"]')
+                        if price_el:
+                            price_text = price_el.inner_text().strip()
+                            if price_text:
+                                price = price_text
+                                break
+                    
+                    results.append({
+                        "id": make_id("avito", url),
+                        "source": "Avito",
+                        "title": title[:200],
+                        "price": price,
+                        "url": url,
+                    })
+                except Exception as e:
+                    continue
+            
+            print(f"[Avito] Собрано через ссылки: {len(results)}")
+            if results:
+                return results
+        
+        # СПОСОБ 2: Если ссылок нет — пробуем карточки
+        print("[Avito] Ссылки не найдены, пробую карточки...")
+        cards = page.query_selector_all('[data-marker="item"]')
+        if not cards:
+            cards = page.query_selector_all('[class*="item"]')
         
         if not cards:
-            # Сохраняем HTML для диагностики
+            print("[Avito] Карточки не найдены. Сохраняю avito_debug.html")
             html = page.content()
             with open("avito_debug.html", "w", encoding="utf-8") as f:
                 f.write(html[:10000])
-            print("[Avito] Карточки не найдены. Сохранён avito_debug.html")
             return results
         
-        print("[Avito] Начинаю сбор данных...")
+        print(f"[Avito] Найдено карточек: {len(cards)}")
         
-        for card in cards:
+        for card in cards[:50]:
             try:
-                # Название
-                title = ''
-                title_el = card.query_selector('[itemprop="name"]') or \
-                          card.query_selector('[data-marker="item-title"]') or \
+                title_el = card.query_selector('[data-marker="item-title"]') or \
+                          card.query_selector('[itemprop="name"]') or \
                           card.query_selector('h3')
-                if title_el:
-                    title = title_el.inner_text().strip()
+                title = title_el.inner_text().strip() if title_el else "Квартира"
                 
-                # Цена
-                price = ''
-                price_el = card.query_selector('[itemprop="price"]') or \
-                          card.query_selector('[data-marker="item-price"]') or \
-                          card.query_selector('span[class*="price"]')
-                if price_el:
-                    price = price_el.inner_text().strip()
-                    # Если есть content, берём его
-                    content = price_el.get_attribute('content')
-                    if content:
-                        price = content
+                price_el = card.query_selector('[data-marker="item-price"]') or \
+                          card.query_selector('[itemprop="price"]')
+                price = price_el.inner_text().strip() if price_el else "Цена не указана"
                 
-                # Ссылка
-                url = ''
                 link_el = card.query_selector('a[data-marker="item-title"]') or \
                          card.query_selector('a[href*="/avito/"]') or \
-                         card.query_selector('a[href*="/tomsk/"]') or \
                          card.query_selector('a')
+                url = ''
                 if link_el:
                     url = link_el.get_attribute('href')
                     if url and not url.startswith('http'):
@@ -236,30 +254,14 @@ def parse_avito(page):
                 if not url:
                     continue
                 
-                # Адрес
-                address = ''
-                addr_el = card.query_selector('[data-marker="item-address"]') or \
-                         card.query_selector('[class*="address"]')
-                if addr_el:
-                    address = addr_el.inner_text().strip()
-                
-                # Формируем заголовок
-                full_title = title
-                if address:
-                    full_title = f"{title} — {address}" if title else address
-                if not full_title:
-                    full_title = "Квартира"
-                
                 results.append({
                     "id": make_id("avito", url),
                     "source": "Avito",
-                    "title": full_title,
-                    "price": price or "Цена не указана",
+                    "title": title[:200],
+                    "price": price,
                     "url": url,
                 })
-                
-            except Exception as e:
-                print(f"[Avito] Ошибка при парсинге карточки: {e}")
+            except:
                 continue
         
         print(f"[Avito] Собрано {len(results)} объявлений")
