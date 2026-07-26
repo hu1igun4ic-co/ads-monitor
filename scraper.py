@@ -243,7 +243,7 @@ def main():
 
     fresh = cian_items + ru09_items + sibdom_items
 
-    now = datetime.now(timezone.utc).isoformat()
+now = datetime.now(timezone.utc).isoformat()
     merged = []
     for item in fresh:
         if item["id"] in existing_by_id:
@@ -253,11 +253,10 @@ def main():
             item["first_seen"] = now
         merged.append(item)
 
-   merged = dedupe(merged)
+    merged = dedupe(merged)
     merged.sort(key=lambda x: x["first_seen"], reverse=True)
     save(merged)
     print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {sum(1 for i in merged if i['id'] not in existing_ids)}")
-
 
 if __name__ == "__main__":
     main()
