@@ -21,7 +21,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Установить браузер для Playwright
-        run: playwright install --with-deps chromiu    
+        run: playwright install --with-deps chromium    
       - name: Запустить парсер
         run: python scraper.py
         env:
