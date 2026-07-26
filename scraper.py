@@ -2,6 +2,7 @@ import os
 import json
 import re
 import hashlib
+import random
 from datetime import datetime, timezone
 
 import requests
@@ -19,6 +20,25 @@ HEADERS = {
     "Accept-Language": "ru-RU,ru;q=0.9",
 }
 
+# Список прокси для Avito (из вашего списка)
+PROXY_LIST = [
+    {"server": "http://31.28.4.192:80"},        # Россия
+    {"server": "http://87.228.89.21:80"},       # Россия
+    {"server": "http://188.119.65.221:80"},     # Россия
+    {"server": "http://176.99.134.183:8090"},   # Россия
+    {"server": "http://185.239.50.122:10808"},  # Россия
+    {"server": "http://163.172.167.48:80"},     # Франция
+    {"server": "http://163.172.53.142:80"},     # Франция
+    {"server": "http://65.108.103.19:80"},      # Финляндия
+    {"server": "http://65.108.159.129:8081"},   # Финляндия
+    {"server": "http://143.198.135.176:80"},    # США
+    {"server": "http://139.99.95.120:8080"},    # Сингапур
+    {"server": "http://129.226.72.101:18080"},  # Гонконг
+]
+
+def get_random_proxy():
+    """Возвращает случайный прокси из списка"""
+    return random.choice(PROXY_LIST)
 
 def load_existing():
     try:
@@ -164,12 +184,23 @@ def parse_avito(page):
         # Ждём загрузки
         page.wait_for_timeout(5000)
         
+        # Проверяем IP (узнаём, какой IP видит Avito)
+        try:
+            ip = page.evaluate('''() => {
+                return fetch('https://api.ipify.org?format=json')
+                    .then(r => r.json())
+                    .then(data => data.ip);
+            }''')
+            print(f"[Avito] Текущий IP: {ip}")
+        except:
+            print("[Avito] Не удалось определить IP")
+        
         # Прокручиваем страницу вниз
         for _ in range(5):
             page.mouse.wheel(0, 1000)
             page.wait_for_timeout(1000)
         
-        # СПОСОБ 1: Ищем все ссылки на объявления (самый надёжный)
+        # СПОСОБ 1: Ищем все ссылки на объявления
         print("[Avito] Ищу ссылки на объявления...")
         links = page.query_selector_all('a[href*="/avito/"]')
         print(f"[Avito] Найдено ссылок: {len(links)}")
@@ -228,11 +259,9 @@ def parse_avito(page):
             with open("avito_debug.html", "w", encoding="utf-8") as f:
                 f.write(html[:10000])
             
-            # ВЫВОДИМ СОДЕРЖИМОЕ В ЛОГ
             print("[Avito] ===== НАЧАЛО DEBUG HTML =====")
-            print(html[:3000])  # Первые 3000 символов
+            print(html[:3000])
             print("[Avito] ===== КОНЕЦ DEBUG HTML =====")
-            
             return results
         
         print(f"[Avito] Найдено карточек: {len(cards)}")
@@ -278,7 +307,6 @@ def parse_avito(page):
             html = page.content()
             with open("avito_debug.html", "w", encoding="utf-8") as f:
                 f.write(html[:10000])
-            print("[Avito] Сохранён debug-файл avito_debug.html")
             print("[Avito] ===== НАЧАЛО DEBUG HTML =====")
             print(html[:3000])
             print("[Avito] ===== КОНЕЦ DEBUG HTML =====")
@@ -424,6 +452,8 @@ def main():
             headless=True,
             args=['--disable-blink-features=AutomationControlled', '--no-sandbox']
         )
+        
+        # Страница для ЦИАН (без прокси)
         page = browser.new_page(
             user_agent=HEADERS["User-Agent"],
             locale="ru-RU",
@@ -432,13 +462,17 @@ def main():
         page.add_init_script("""
             Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
         """)
-        
         cian_items = parse_cian(page)
+        
+        # Страница для Avito (С ПРОКСИ)
+        proxy = get_random_proxy()
+        print(f"[Avito] Использую прокси: {proxy['server']}")
         
         avito_page = browser.new_page(
             user_agent=HEADERS["User-Agent"],
             locale="ru-RU",
-            viewport={'width': 1920, 'height': 1080}
+            viewport={'width': 1920, 'height': 1080},
+            proxy=proxy  # <-- Прокси для Avito
         )
         avito_page.add_init_script("""
             Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
@@ -452,6 +486,7 @@ def main():
 
     fresh = cian_items + ru09_items + sibdom_items + avito_items
     print(f"[Статистика] ЦИАН: {len(cian_items)}, RU09: {len(ru09_items)}, Сибдом: {len(sibdom_items)}, Avito: {len(avito_items)}")
+
     now = datetime.now(timezone.utc).isoformat()
     merged = []
     for item in fresh:
@@ -468,7 +503,3 @@ def main():
     new_items = [i for i in merged if i['id'] not in existing_ids]
     print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {len(new_items)}")
     send_telegram(new_items)
-
-
-if __name__ == "__main__":
-    main()
