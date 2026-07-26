@@ -1,0 +1,35 @@
+name: Проверка объявлений
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'   # каждые 20 минут
+  workflow_dispatch:          # позволяет запускать вручную кнопкой
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Скачать репозиторий
+        uses: actions/checkout@v4
+
+      - name: Установить Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Установить браузер для Playwright
+        run: playwright install --with-deps chromium
+
+      - name: Запустить парсер
+        run: python scraper.py
+
+      - name: Сохранить изменения обратно в репозиторий
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data.json
+          git commit -m "Обновление объявлений" || echo "Нет изменений"
+          git push
