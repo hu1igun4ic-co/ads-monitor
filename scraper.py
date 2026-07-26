@@ -194,7 +194,39 @@ def parse_sibdom():
     print(f"[Sibdom] ИТОГО: {len(results)}")
     return results
 
+def extract_number(text, pattern):
+    if not text:
+        return None
+    m = re.search(pattern, text.replace("\u00a0", " "))
+    if not m:
+        return None
+    return float(m.group(1).replace(",", "."))
 
+
+def dedupe(items):
+    """Схлопывает объявления с одинаковой площадью и близкой ценой из разных источников."""
+    seen = {}
+    result = []
+    for item in items:
+        area = extract_number(item["title"], r"(\d+[.,]?\d*)\s*м²")
+        price_num = extract_number(item["price"], r"([\d\s]{4,})")
+        price_num = float(re.sub(r"\D", "", item["price"])) if item["price"] else None
+
+        if area and price_num:
+            key = (round(area, 1), round(price_num / 10000))  # округляем цену до 10 тыс.
+        else:
+            key = None
+
+        if key and key in seen:
+            seen[key]["also_on"] = seen[key].get("also_on", []) + [item["source"]]
+            continue
+
+        item["also_on"] = []
+        if key:
+            seen[key] = item
+        result.append(item)
+    return result
+    
 def main():
     existing = load_existing()
     existing_ids = {item["id"] for item in existing}
@@ -221,6 +253,7 @@ def main():
             item["first_seen"] = now
         merged.append(item)
 
+   merged = dedupe(merged)
     merged.sort(key=lambda x: x["first_seen"], reverse=True)
     save(merged)
     print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {sum(1 for i in merged if i['id'] not in existing_ids)}")
