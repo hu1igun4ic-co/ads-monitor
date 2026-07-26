@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Мониторинг квартир — ЦИАН, RU09, Сибдом</title>
 <style>
   * {
     margin: 0;
@@ -196,3 +201,90 @@
     }
   }
 </style>
+</head>
+<body>
+
+<h1>🏠 Мониторинг квартир</h1>
+
+<div class="filters">
+  <input type="text" id="searchBox" placeholder="🔍 Поиск по району, адресу...">
+  <input type="number" id="priceMin" placeholder="₽ от">
+  <input type="number" id="priceMax" placeholder="₽ до">
+</div>
+
+<p class="count" id="count">Загрузка...</p>
+<div id="list" class="grid"></div>
+<p id="empty" class="empty" style="display:none;">Пока нет данных. Дождитесь первого запуска парсера.</p>
+
+<script>
+let allData = [];
+
+function priceToNumber(price) {
+  const digits = (price || "").replace(/\D/g, "");
+  return digits ? parseInt(digits, 10) : null;
+}
+
+function render() {
+  const search = document.getElementById('searchBox').value.trim().toLowerCase();
+  const min = parseInt(document.getElementById('priceMin').value) || null;
+  const max = parseInt(document.getElementById('priceMax').value) || null;
+
+  const filtered = allData.filter(item => {
+    if (search && !item.title.toLowerCase().includes(search)) return false;
+    const p = priceToNumber(item.price);
+    if (min && (!p || p < min)) return false;
+    if (max && (!p || p > max)) return false;
+    return true;
+  });
+
+  document.getElementById('count').textContent = `📊 Показано: ${filtered.length} из ${allData.length}`;
+
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+  if (!filtered.length) {
+    document.getElementById('empty').style.display = 'block';
+    document.getElementById('empty').textContent = allData.length ? '🔍 Ничего не найдено по фильтру.' : '⏳ Пока нет данных.';
+    return;
+  }
+  document.getElementById('empty').style.display = 'none';
+
+  const dayAgo = Date.now() - 24 * 60 * 60 * 1000;
+  filtered.forEach(item => {
+    const isNew = new Date(item.first_seen).getTime() > dayAgo;
+    const card = document.createElement('div');
+    card.className = 'card' + (isNew ? ' new' : '');
+    const alsoOn = (item.also_on || []).length
+      ? `<span class="badge also">➕ Также: ${item.also_on.join(', ')}</span>` : '';
+    card.innerHTML = `
+      <div>
+        <span class="badge source">${item.source}</span>
+        ${isNew ? '<span class="badge new-badge">🔥 Новое</span>' : ''}
+        ${alsoOn}
+      </div>
+      <div class="title">${item.title}</div>
+      <div class="price">${item.price}</div>
+      <a class="url-link" href="${item.url}" target="_blank">→ Открыть объявление</a>
+      <div class="meta">🕒 ${new Date(item.first_seen).toLocaleDateString('ru-RU')}</div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+fetch('data.json?_=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    allData = data;
+    render();
+  })
+  .catch(() => {
+    document.getElementById('empty').style.display = 'block';
+    document.getElementById('empty').textContent = '❌ Не удалось загрузить данные.';
+  });
+
+document.getElementById('searchBox').addEventListener('input', render);
+document.getElementById('priceMin').addEventListener('input', render);
+document.getElementById('priceMax').addEventListener('input', render);
+</script>
+
+</body>
+</html>
