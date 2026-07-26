@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Квартиры — Avito & ЦИАН</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
+  h1 { text-align: center; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; max-width: 1200px; margin: 0 auto; }
+  .card { background: white; border-radius: 8px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .card.new { border: 2px solid #e74c3c; }
+  .badge { display: inline-block; background: #3498db; color: white; font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+  .price { font-weight: bold; font-size: 18px; margin: 8px 0; }
+  a { color: #2980b9; text-decoration: none; }
+  .empty { text-align: center; color: #888; margin-top: 40px; }
+</style>
+</head>
+<body>
+<h1>Квартиры — Avito & ЦИАН</h1>
+<div id="list" class="grid"></div>
+<p id="empty" class="empty" style="display:none;">Пока нет данных. Дождись первого запуска парсера в Actions.</p>
 
+<script>
+fetch('data.json?_=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    const list = document.getElementById('list');
+    if (!data.length) {
+      document.getElementById('empty').style.display = 'block';
+      return;
+    }
+    const dayAgo = Date.now() - 24 * 60 * 60 * 1000;
+    data.forEach(item => {
+      const isNew = new Date(item.first_seen).getTime() > dayAgo;
+      const card = document.createElement('div');
+      card.className = 'card' + (isNew ? ' new' : '');
+      card.innerHTML = `
+        <span class="badge">${item.source}</span>
+        ${isNew ? '<span class="badge" style="background:#e74c3c;">Новое</span>' : ''}
+        <div>${item.title}</div>
+        <div class="price">${item.price}</div>
+        <a href="${item.url}" target="_blank">Открыть объявление →</a>
+      `;
+      list.appendChild(card);
+    });
+  })
+  .catch(() => {
+    document.getElementById('empty').style.display = 'block';
+  });
+</script>
+</body>
+</html>
