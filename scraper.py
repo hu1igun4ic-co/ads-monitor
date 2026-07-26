@@ -84,11 +84,16 @@ def parse_ru09():
         r.encoding = "windows-1251"
         soup = BeautifulSoup(r.text, "html.parser")
 
+        title_pattern = re.compile(r"(\d-комнатн|Студия|комната)", re.IGNORECASE)
         links = soup.find_all("a", href=re.compile(r"subaction=detail&id=\d+"))
-        print(f"[ru09] Найдено ссылок на объявления: {len(links)}")
+        print(f"[ru09] Всего ссылок на объявления (все виды): {len(links)}")
 
         seen_ids = set()
         for link in links:
+            text = link.get_text(strip=True)
+            if not title_pattern.search(text):
+                continue  # пропускаем служебные ссылки (фото, сравнение и т.п.)
+
             href = link.get("href")
             m = re.search(r"id=(\d+)", href)
             if not m:
@@ -99,27 +104,30 @@ def parse_ru09():
             seen_ids.add(item_id)
 
             full_url = href if href.startswith("http") else "https://www.tomsk.ru09.ru" + href
-            title_text = link.get_text(strip=True)
-            if not title_text:
-                continue
 
-            # Цена — ищем рядом в родительском блоке
+            # Ищем цену в ближайшем родительском блоке
             price = ""
-            parent = link.find_parent()
-            if parent:
-                price_match = re.search(r"[\d\s]{4,}\s*т\.р\.|[\d\s]{4,}\s*руб", parent.get_text())
-                if price_match:
-                    price = price_match.group(0).strip()
+            block = link
+            for _ in range(4):
+                block = block.find_parent()
+                if block is None:
+                    break
+                strong = block.find(["strong", "b"])
+                if strong:
+                    digits = re.sub(r"\D", "", strong.get_text())
+                    if 3 <= len(digits) <= 6:
+                        price = f"{int(digits):,} тыс.руб.".replace(",", " ")
+                        break
 
             results.append({
                 "id": make_id("ru09", full_url),
                 "source": "RU09",
-                "title": title_text,
+                "title": text,
                 "price": price,
                 "url": full_url,
             })
 
-        if len(links) == 0:
+        if not results:
             print("[ru09] HTML-фрагмент для диагностики:")
             print(r.text[:1500])
     except Exception as e:
@@ -149,18 +157,18 @@ def parse_sibdom():
             item_id = m.group(1)
             if item_id in seen_ids:
                 continue
+
+            title_attr = link.get("title") or ""
+            price_match = re.search(r"([\d]{6,})\s*рубл", title_attr)
+            if not price_match:
+                continue  # без title-атрибута с ценой пропускаем — это не карточка объявления
+
             seen_ids.add(item_id)
+            price_num = int(price_match.group(1))
+            price = f"{price_num:,} ₽".replace(",", " ")
+            title_text = title_attr[:price_match.start()].strip().rstrip(",")
 
             full_url = href if href.startswith("http") else "https://tomsk.sibdom.ru" + href
-            full_text = link.get_text(strip=True)
-            if not full_text:
-                continue
-
-            price_match = re.search(r"[\d\s]{5,}\s*₽", full_text)
-            price = price_match.group(0).strip() if price_match else ""
-
-            title_match = re.match(r"^(.*?квартира[^0-9]*\d[.,]?\d*\s*м²)", full_text)
-            title_text = title_match.group(1).strip() if title_match else full_text[:80]
 
             results.append({
                 "id": make_id("sibdom", full_url),
@@ -170,7 +178,7 @@ def parse_sibdom():
                 "url": full_url,
             })
 
-        if len(links) == 0:
+        if not results:
             print("[Sibdom] HTML-фрагмент для диагностики:")
             print(r.text[:1500])
     except Exception as e:
