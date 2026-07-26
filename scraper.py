@@ -404,38 +404,38 @@ def main():
     existing_ids = {item["id"] for item in existing}
     existing_by_id = {item["id"]: item for item in existing}
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(
-        headless=True,
-        args=['--disable-blink-features=AutomationControlled', '--no-sandbox']
-    )
-    page = browser.new_page(
-        user_agent=HEADERS["User-Agent"],
-        locale="ru-RU",
-        viewport={'width': 1920, 'height': 1080}
-    )
-    page.add_init_script("""
-        Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
-    """)
-    
-    cian_items = parse_cian(page)
-    
-    avito_page = browser.new_page(
-        user_agent=HEADERS["User-Agent"],
-        locale="ru-RU",
-        viewport={'width': 1920, 'height': 1080}
-    )
-    avito_page.add_init_script("""
-        Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
-    """)
-    avito_items = parse_avito(avito_page)
-    
-    browser.close()
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=True,
+            args=['--disable-blink-features=AutomationControlled', '--no-sandbox']
+        )
+        page = browser.new_page(
+            user_agent=HEADERS["User-Agent"],
+            locale="ru-RU",
+            viewport={'width': 1920, 'height': 1080}
+        )
+        page.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+        """)
+        
+        cian_items = parse_cian(page)
+        
+        avito_page = browser.new_page(
+            user_agent=HEADERS["User-Agent"],
+            locale="ru-RU",
+            viewport={'width': 1920, 'height': 1080}
+        )
+        avito_page.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+        """)
+        avito_items = parse_avito(avito_page)
+        
+        browser.close()
 
     ru09_items = parse_ru09()
     sibdom_items = parse_sibdom()
 
-   fresh = cian_items + ru09_items + sibdom_items + avito_items
+    fresh = cian_items + ru09_items + sibdom_items + avito_items
 
     now = datetime.now(timezone.utc).isoformat()
     merged = []
