@@ -1,1 +1,226 @@
-[]
+[
+  {
+    "id": "53a3b473427e1d3e57d81b1c77f1724b",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 38,04 м², 2/10 этаж",
+    "price": "5 674 350 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/324480145/?context=4.Qdrxp-LfcFk.K24EkuwRkye_Px9ueb2RuHaHOtd1uZ7kIG2kKGQqoFWNE2qUkVfMYa34Jp3xKF7Brf82dpFWcaw5jQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "c2054afbe8dff137400ce02c8b380971",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 43 м², 23/26 этаж",
+    "price": "7 500 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/320099546/?context=4.qhu5LqTIXrI.Hp_IGRSpRqclNi7n1vZskRXNQzV11U8Zlj8EFOd7EO5lG4dUWsFK84cGBNKO1X7TmHuPgX3YeI1qLw&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "f2d79ccd96060781b0c4b50493c6c417",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 13 м², 4/9 этаж",
+    "price": "1 400 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/329558631/?context=4.aZOTjB56-Lw.IrHnAtQrHHQt39eI87pAJyvO_1ifBgoibACdWoogUc_APDWlH3OKMe7TLF1BbhDsoWvqGhXr-U__sw&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "387d702c50bdbd8cc5b5b797edc91b04",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 64,5 м², 3/23 этаж",
+    "price": "9 949 350 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/304950693/?context=4.k39AjHW9XYs.EhjUjMsnv1zzoHoUGbfq6RKpa9ZaC8W_5RuL2gS92Keud4crCrK8nsBAe7nM_IUT9fxX2fJeP2BRHw&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "9ed450c14b7d89f48a7b019de0db1981",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 55 м², 1/6 этаж",
+    "price": "8 600 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/330505715/?context=4.lgkOl6mPeug.xGuuc9-OtvKuk8I0QbgdOj0KUfJfKV6v-3enNnGHJQd7bV2aTPsiB5N3SpqMKsv6TPODQgRK6UkbeA&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "b3e9d264a7f222f3ba0e16673562fc5c",
+    "source": "ЦИАН",
+    "title": "Студия, 19,1 м², 2/9 этаж",
+    "price": "1 600 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331484921/?context=4.JPvpybTGOl0.NKcKp7eg62qskG74GEUnGJpmX3OeLzI-p0jPZUdJJxAD5bddbbZ6GtZNB7ZhxtAQOYGlkVt5a8eX7w&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "7052839190e68559bcf449b937f6394c",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 37,05 м², 23/25 этаж",
+    "price": "4 400 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331391367/?context=4.VPE32rLCi9o.YeoDQ2WTyxnRKhX4k9ybZibplrhfXTcnRNfBlaxBsaUeGBPO8sLyuIVcK1pWmGWQemUo6IglXFSzzw&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "c1921151a7dc9d5ab33862381c4545f0",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 64,7 м², 1/9 этаж",
+    "price": "8 500 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/300187991/?context=4.0A_Hd4yEyuk.lW-BuFAQJJJXpvacnC2XVWX5K21irhuI9Yn5pYorLE5d5249FUW_e6Acq688fOmiNAO6vqL-eM_uEA&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "5a7f82b9706222601f84adab61a7bdf2",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 58 м², 13/19 этаж",
+    "price": "6 500 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332089463/?context=4.7wB5Hj3K7po.CKjH_flwWyf4taEWuccFTFw8axUffG4ZHZBOe3RGHvZvCcV_JIWkAnz6mGW3DanlLU_XZN7WCaoolQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "58b4bc01792e346ecb6de63d1dfb2fbc",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 101,24 м², 1/22 этаж",
+    "price": "14 398 200 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332056358/?context=4.vlsA_K1KwbE.dCqTCu3m5GT5cVrL9tr42gltugBQ0fUd5uoMOX74nxHTWABnJEMMjKHRRhpn6PHyhTDJdzVAEQLxmg&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "0c9f6393294f65820901c1259641366d",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 68 м², 1/9 этаж",
+    "price": "8 500 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/326343868/?context=4.I8sau75y-EQ.Z_urs0VLzICMHy1UjqKkuMJTBVPzl7cgDwht4Ujws1PKvHUNyYuY9_VSpUy4QEcdH_C9BxKU1OmYEQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "68565ccdab215dde20dfa9eba11a7401",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 13 м², 1/9 этаж",
+    "price": "1 800 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331661364/?context=4.UimzCh0Yhio.93pNQ7VHn-0qBsKu96icDVsbv7dkI1R3DUn6GLJp9tJ7WEHo7tHPZRbP8RxsuQ_Rvlsjwn4TIy-WgA&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "6831fab9013ae0836b3bd971c51d8dfc",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 56,73 м², 2/25 этаж",
+    "price": "6 700 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332048722/?context=4.ShDroUWNGH8.QwqCR0bdRdk7rX2x1tXbPJ9l4UzPmveUC0a-MsF2eVNuuR4v0vSIJHsJ7ar0Mi6JBSY0KI6O2HzRqQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "225720ba00cddc85cd8212559b765cc3",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 49,5 м², 6/6 этаж",
+    "price": "5 800 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331355468/?context=4.fKI-zdU2WEI.shocs0AG5OOGfp0GWh8PGSPRb7jfGe3VlfLo-7DKWs2ms5497ZjcHIz2Muo3ndCeYWWnyocfNklUcA&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "ecd32625dbe505e0d260606299d61bb9",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 36 м², 9/10 этаж",
+    "price": "4 890 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331612746/?context=4.6biNKbOQ20s.UTm7P3B8uoqM5WFqxfPwsliWYIzdjVvyjhHkya0jYoSOy75KmfM2fBEGJUtE4oFqphynP243uqGQoA&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "2db01fb87323dbaba60360f9af9254d0",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 39,8 м², 1/9 этаж",
+    "price": "7 562 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332297909/?context=4.-6zJ11Ym1y4.RQrH4HAjY2-r9Ic5xM4QPbUluDe2yQhyXNfz5sFoAy5H6a0-kRcX4rHPEEjxK5sJOeIDkKKxZP1lGg&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "cc175d1186040fa6d6db4b553f163bf0",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 34,9 м², 6/9 этаж",
+    "price": "4 400 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/330468463/?context=4.VKXrK6Ze7GQ.FZ1o3VfBGWJKCFrZ1x66uhkq39fZzmKMzxY0Oos2YY0auX0n3STx4io9ZxBf7CgVEf-DhtZmW4OeTg&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "dbee361ddece4947434e5bb16959feaf",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 35,6 м², 2/2 этаж",
+    "price": "3 000 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331871027/?context=4.nfed-m0Fo_U.NH-3SwWK35KSw03yieRSzalsXJ8N5VfooMVZ2RiPAUQsdBI0M916Wnf4BCwsOfmV6VsVN-MTpfpqlg&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "71742329e2c0dc9029f3d5de6924b395",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 60,36 м², 7/10 этаж",
+    "price": "8 636 450 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/324479915/?context=4._4iIbPRXric.d3Szg0S6-UrMsLxBInhVej2gpw2ZC6lHOP8OkxPDqTADVPAXN3PRhnzQQsD1Jd2bYrldhReqz2okLg&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "b6a40dc365d7caaefcffe7c81153f372",
+    "source": "ЦИАН",
+    "title": "Квартира для воплощений идей",
+    "price": "5 600 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331825527/?context=4.uQ_L1W3xqxU.bbFzv64oCNlE5CdmmvecZUmS0OuR_Pk69Ynxgt7DyM6bewq28nNtNZd0A7a7nxqibKFWoEb7OGHosQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "95adf6ca6bb07f109122fc024fe04964",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 40 м², 1/5 этаж",
+    "price": "4 100 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/324414193/?context=4.D0NUbgPd1yU.j30khFi_r3wPUhLSqM2zWxt2W65V3ZnW21iPu0nY0w8jxXmabO8IbmhV0uSoB37RI2fU0eLNWMfN3A&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "3e02b4d42a52f35984f04b684090accf",
+    "source": "ЦИАН",
+    "title": "Студия, 30,92 м², 15/25 этаж",
+    "price": "3 700 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332048748/?context=4.34hm9vRtypU.G4LL6gcLp4skK38h4iI9r3UYJQNyLTmoaImFx7nkgzayxf6cnJfkHjRFWxZjV7f6uAG18Ms6hYnEiw&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "a866f5cadf61e4d7516a0c0152c586d1",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 36,7 м², 1/14 этаж",
+    "price": "4 400 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331986329/?context=4.DlCOZKbPuQQ._tPSuggzk1l7EtTkNbrQPgy0B0K4SWxAZ56hgjGq3dzSNaeBB_59Rv5ygx7BLnILmkAB0FoiXU6M_w&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "464aab11d3155a0383e3a066b9d1d22c",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 42,2 м², 2/3 этаж",
+    "price": "4 800 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/328651791/?context=4.lHb41uOq4Q0.-T5m30_Ae_5P30JmtMKrLrVIlWRIrwDImXUTZk8BYcj9N4nRqfcMEzqbu0Jm46fpz3w0ZuCQyJa4TQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "684fc03d9978668cb87fcab14fd841d6",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 90,5 м², 1/6 этаж",
+    "price": "19 000 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/327937422/?context=4.vM1UPXkuvAo.MHwFUKCsRev6yWLVnky1RebWR-M5ucLxb8wjdYn-XyTPcoUaoxJqK2bFgLZSpZfKATWn3KVGQGw35A&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "622e4180a39d8b93bdaafb5110f47f16",
+    "source": "ЦИАН",
+    "title": "Продаеться Отличная Квартира",
+    "price": "4 800 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/328003343/?context=4.C8D1mVgfDnU.YSIfC1V0DZ0AS05eBRreFVyAwLmpm9ELqlPAL8ciDJ_dYiujRxwMatcx99Wr8q9l8GCXxefI6lZSeQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "f46d07009fbc50eb468b7114280f230b",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 38 м², 1/2 этаж",
+    "price": "3 000 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/330208039/?context=4.Cnosfov7W8s.yFBDR4QEytNlay3cwyz6D8pFP3vjN6SEk1anig28q7JbVlXIubxqJyVSRHweTHk98qRUZ4qeAR9enQ&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  },
+  {
+    "id": "93730efac61c4e3790e3e9184983f241",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 61,45 м², 2/10 этаж",
+    "price": "8 489 200 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/324479936/?context=4.Ot5tVF_qwiQ.p8J5cqFYFKZvk6xsXBRBjZNDMD-qXjzDMc_gDviKYaUkL2vlK9T47ImCNNwuQTKWhWC2GR7oap-zIw&mlSearchSessionGuid=d1281bc6bfcaa1593490643d99d6266a",
+    "first_seen": "2026-07-26T12:35:51.428427+00:00"
+  }
+]
