@@ -440,7 +440,7 @@ def main():
     sibdom_items = parse_sibdom()
 
     fresh = cian_items + ru09_items + sibdom_items + avito_items
-
+    print(f"[Статистика] ЦИАН: {len(cian_items)}, RU09: {len(ru09_items)}, Сибдом: {len(sibdom_items)}, Avito: {len(avito_items)}")
     now = datetime.now(timezone.utc).isoformat()
     merged = []
     for item in fresh:
