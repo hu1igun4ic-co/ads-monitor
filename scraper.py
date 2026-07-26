@@ -157,115 +157,119 @@ def parse_avito(page):
     results = []
     try:
         print("[Avito] Начинаю загрузку страницы...")
-        page.goto(AVITO_URL, timeout=60000, wait_until='domcontentloaded')
         
-        # Ждём загрузки карточек (увеличил время)
-        page.wait_for_timeout(8000)
+        # Переходим на страницу
+        page.goto(AVITO_URL, timeout=60000, wait_until='networkidle')
         
-        # Прокрутка вниз для подгрузки всех объявлений
-        for _ in range(3):
-            page.mouse.wheel(0, 800)
-            page.wait_for_timeout(1500)
+        # Ждём подольше для загрузки
+        page.wait_for_timeout(5000)
         
-        # Ждём появления карточек
-        try:
-            page.wait_for_selector('[data-marker="item"]', timeout=15000)
-        except:
-            print("[Avito] Карточки не найдены, пробую альтернативный селектор...")
-            page.wait_for_selector('[class*="item"]', timeout=10000)
+        # Прокручиваем страницу вниз
+        for _ in range(5):
+            page.mouse.wheel(0, 1000)
+            page.wait_for_timeout(1000)
+        
+        # Пробуем разные селекторы
+        selectors = [
+            '[data-marker="item"]',
+            '[class*="item"]',
+            '[class*="Item"]',
+            '[data-testid="item"]',
+            'div[class*="item"]',
+            'article'
+        ]
+        
+        cards = []
+        for selector in selectors:
+            try:
+                page.wait_for_selector(selector, timeout=5000)
+                cards = page.query_selector_all(selector)
+                if cards and len(cards) > 0:
+                    print(f"[Avito] Нашёл карточки по селектору: {selector}, {len(cards)} шт.")
+                    break
+            except:
+                continue
+        
+        if not cards:
+            # Сохраняем HTML для диагностики
+            html = page.content()
+            with open("avito_debug.html", "w", encoding="utf-8") as f:
+                f.write(html[:10000])
+            print("[Avito] Карточки не найдены. Сохранён avito_debug.html")
+            return results
         
         print("[Avito] Начинаю сбор данных...")
         
-        # Используем evaluate для извлечения данных
-        items_data = page.evaluate('''
-            () => {
-                // Пробуем разные селекторы для карточек
-                let cards = document.querySelectorAll('[data-marker="item"]');
-                if (cards.length === 0) {
-                    cards = document.querySelectorAll('[class*="item"]');
-                }
+        for card in cards:
+            try:
+                # Название
+                title = ''
+                title_el = card.query_selector('[itemprop="name"]') or \
+                          card.query_selector('[data-marker="item-title"]') or \
+                          card.query_selector('h3')
+                if title_el:
+                    title = title_el.inner_text().strip()
                 
-                const result = [];
-                cards.forEach(card => {
-                    // Название
-                    let title = '';
-                    const titleEl = card.querySelector('[itemprop="name"]') || 
-                                   card.querySelector('[data-marker="item-title"]');
-                    if (titleEl) title = titleEl.innerText?.trim() || titleEl.textContent?.trim() || '';
-                    
-                    // Цена
-                    let price = '';
-                    const priceEl = card.querySelector('[itemprop="price"]') ||
-                                   card.querySelector('[data-marker="item-price"]');
-                    if (priceEl) {
-                        price = priceEl.getAttribute('content') || priceEl.innerText?.trim() || '';
-                    }
-                    
-                    // Ссылка
-                    let url = '';
-                    const linkEl = card.querySelector('[data-marker="item-title"]') || 
-                                  card.querySelector('a[href*="/avito/"]') ||
-                                  card.querySelector('a[href*="/tomsk/"]');
-                    if (linkEl) {
-                        url = linkEl.getAttribute('href') || '';
-                        if (url && !url.startsWith('http')) {
-                            url = 'https://www.avito.ru' + url;
-                        }
-                    }
-                    
-                    // Адрес/метро
-                    let address = '';
-                    const addrEl = card.querySelector('[data-marker="item-address"]') ||
-                                  card.querySelector('[class*="address"]') ||
-                                  card.querySelector('[class*="metro"]');
-                    if (addrEl) address = addrEl.innerText?.trim() || '';
-                    
-                    // Комнатность
-                    let rooms = '';
-                    const roomsMatch = title.match(/(\\d+)-комнатн|Студия/i);
-                    if (roomsMatch) rooms = roomsMatch[0];
-                    
-                    result.push({
-                        title: title || 'Квартира',
-                        price: price || 'Цена не указана',
-                        url: url || '',
-                        address: address || '',
-                        rooms: rooms || ''
-                    });
-                });
-                return result;
-            }
-        ''')
-        
-        # Форматируем данные под единый формат
-        for item in items_data:
-            if not item.get('url'):
+                # Цена
+                price = ''
+                price_el = card.query_selector('[itemprop="price"]') or \
+                          card.query_selector('[data-marker="item-price"]') or \
+                          card.query_selector('span[class*="price"]')
+                if price_el:
+                    price = price_el.inner_text().strip()
+                    # Если есть content, берём его
+                    content = price_el.get_attribute('content')
+                    if content:
+                        price = content
+                
+                # Ссылка
+                url = ''
+                link_el = card.query_selector('a[data-marker="item-title"]') or \
+                         card.query_selector('a[href*="/avito/"]') or \
+                         card.query_selector('a[href*="/tomsk/"]') or \
+                         card.query_selector('a')
+                if link_el:
+                    url = link_el.get_attribute('href')
+                    if url and not url.startswith('http'):
+                        url = 'https://www.avito.ru' + url
+                
+                if not url:
+                    continue
+                
+                # Адрес
+                address = ''
+                addr_el = card.query_selector('[data-marker="item-address"]') or \
+                         card.query_selector('[class*="address"]')
+                if addr_el:
+                    address = addr_el.inner_text().strip()
+                
+                # Формируем заголовок
+                full_title = title
+                if address:
+                    full_title = f"{title} — {address}" if title else address
+                if not full_title:
+                    full_title = "Квартира"
+                
+                results.append({
+                    "id": make_id("avito", url),
+                    "source": "Avito",
+                    "title": full_title,
+                    "price": price or "Цена не указана",
+                    "url": url,
+                })
+                
+            except Exception as e:
+                print(f"[Avito] Ошибка при парсинге карточки: {e}")
                 continue
-                
-            # Формируем полный заголовок
-            full_title = item['title']
-            if item.get('address'):
-                full_title += f" — {item['address']}"
-            if item.get('rooms'):
-                full_title = f"{item['rooms']}, {full_title}"
-            
-            results.append({
-                "id": make_id("avito", item['url']),
-                "source": "Avito",
-                "title": full_title,
-                "price": item['price'],
-                "url": item['url'],
-            })
         
         print(f"[Avito] Собрано {len(results)} объявлений")
         
     except Exception as e:
         print(f"[Avito] Ошибка: {e}")
-        # Диагностика: сохраняем HTML для отладки
         try:
             html = page.content()
             with open("avito_debug.html", "w", encoding="utf-8") as f:
-                f.write(html[:5000])
+                f.write(html[:10000])
             print("[Avito] Сохранён debug-файл avito_debug.html")
         except:
             pass
