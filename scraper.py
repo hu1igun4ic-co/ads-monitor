@@ -92,7 +92,7 @@ def parse_ru09():
         for link in links:
             text = link.get_text(strip=True)
             if not title_pattern.search(text):
-                continue  # пропускаем служебные ссылки (фото, сравнение и т.п.)
+                continue
 
             href = link.get("href")
             m = re.search(r"id=(\d+)", href)
@@ -105,7 +105,6 @@ def parse_ru09():
 
             full_url = href if href.startswith("http") else "https://www.tomsk.ru09.ru" + href
 
-            # Ищем цену в ближайшем родительском блоке
             price = ""
             block = link
             for _ in range(4):
@@ -158,7 +157,6 @@ def parse_sibdom():
             if item_id in seen_ids:
                 continue
 
-            # Собираем текст отовсюду: сам текст ссылки, title, alt картинок внутри
             pieces = [link.get_text(" ", strip=True), link.get("title", "")]
             for img in link.find_all("img"):
                 pieces.append(img.get("alt", ""))
@@ -194,6 +192,9 @@ def parse_sibdom():
     print(f"[Sibdom] ИТОГО: {len(results)}")
     return results
 
+
+# ---------- Дедупликация ----------
+
 def extract_number(text, pattern):
     if not text:
         return None
@@ -209,11 +210,10 @@ def dedupe(items):
     result = []
     for item in items:
         area = extract_number(item["title"], r"(\d+[.,]?\d*)\s*м²")
-        price_num = extract_number(item["price"], r"([\d\s]{4,})")
         price_num = float(re.sub(r"\D", "", item["price"])) if item["price"] else None
 
         if area and price_num:
-            key = (round(area, 1), round(price_num / 10000))  # округляем цену до 10 тыс.
+            key = (round(area, 1), round(price_num / 10000))
         else:
             key = None
 
@@ -226,7 +226,8 @@ def dedupe(items):
             seen[key] = item
         result.append(item)
     return result
-    
+
+
 def main():
     existing = load_existing()
     existing_ids = {item["id"] for item in existing}
@@ -243,7 +244,7 @@ def main():
 
     fresh = cian_items + ru09_items + sibdom_items
 
-now = datetime.now(timezone.utc).isoformat()
+    now = datetime.now(timezone.utc).isoformat()
     merged = []
     for item in fresh:
         if item["id"] in existing_by_id:
@@ -257,6 +258,7 @@ now = datetime.now(timezone.utc).isoformat()
     merged.sort(key=lambda x: x["first_seen"], reverse=True)
     save(merged)
     print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {sum(1 for i in merged if i['id'] not in existing_ids)}")
+
 
 if __name__ == "__main__":
     main()
