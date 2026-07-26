@@ -1,3 +1,4 @@
+import os
 import json
 import re
 import hashlib
@@ -239,6 +240,40 @@ def dedupe(items):
         result.append(item)
     return result
 
+def send_telegram(new_items):
+    token = os.environ.get("TELEGRAM_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    if not token or not chat_id:
+        print("[Telegram] Токен или chat_id не заданы — пропускаю уведомления")
+        return
+    if not new_items:
+        print("[Telegram] Новых объявлений нет — уведомление не отправляю")
+        return
+
+    for item in new_items[:10]:  # не больше 10 сообщений за раз, чтобы не спамить
+        text = f"🏠 {item['source']}\n{item['title']}\n💰 {item['price']}\n{item['url']}"
+        try:
+            resp = requests.post(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                data={"chat_id": chat_id, "text": text},
+                timeout=15,
+            )
+            if resp.status_code != 200:
+                print(f"[Telegram] Ошибка отправки: {resp.status_code} {resp.text}")
+        except Exception as e:
+            print("[Telegram] Ошибка запроса:", e)
+
+    if len(new_items) > 10:
+        try:
+            requests.post(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                data={"chat_id": chat_id, "text": f"...и ещё {len(new_items) - 10} новых объявлений на сайте."},
+                timeout=15,
+            )
+        except Exception as e:
+            print("[Telegram] Ошибка отправки итоговой сводки:", e)
+
+    print(f"[Telegram] Отправлено уведомлений: {min(len(new_items), 10)}")
 
 def main():
     existing = load_existing()
@@ -269,7 +304,9 @@ def main():
     merged = dedupe(merged)
     merged.sort(key=lambda x: x["first_seen"], reverse=True)
     save(merged)
-    print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {sum(1 for i in merged if i['id'] not in existing_ids)}")
+    new_items = [i for i in merged if i['id'] not in existing_ids]
+    print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {len(new_items)}")
+    send_telegram(new_items)
 
 
 if __name__ == "__main__":
