@@ -1,12 +1,22 @@
 import json
+import re
 import hashlib
 from datetime import datetime, timezone
+
+import requests
+from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 
-AVITO_URL = "https://www.avito.ru/tomsk/kvartiry/prodam/ipoteka-ASgBAgICAkSSA8YQ5usOAg?context=H4sIAAAAAAAA_wEmANn_YToxOntzOjE6InkiO3M6MTY6IjFrSFpCb0xLUTFSWEE2Q2YiO30YGu8eJgAAAA&f=ASgBAQICA0SSA8YQkL4Nlq415usOAgJAygjE_M8yilmarAGYrAGWrAGUrAGIWYZZhFmCWYBZ_ljAwQ0kvP03uv03"
 CIAN_URL = "https://tomsk.cian.ru/cat.php?deal_type=sale&engine_version=2&offer_type=flat&region=5016&totime=-2"
+RU09_URL = "https://www.tomsk.ru09.ru/realty/?otype=1&type=1"
+SIBDOM_URL = "https://tomsk.sibdom.ru/kvartiry/prodam_tomsk_ot-sobstvennika/"
 
 DATA_FILE = "data.json"
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+    "Accept-Language": "ru-RU,ru;q=0.9",
+}
 
 
 def load_existing():
@@ -26,65 +36,18 @@ def make_id(source, url):
     return hashlib.md5(f"{source}:{url}".encode()).hexdigest()
 
 
-def parse_avito(page):
-    results = []
-    try:
-        page.goto(AVITO_URL, timeout=60000)
-        page.wait_for_timeout(6000)
-
-        title = page.title()
-        print(f"[Avito] Заголовок страницы: {title}")
-
-        # Проверка на капчу/блокировку
-        if "проверка" in title.lower() or "доступ" in title.lower() or "captcha" in page.content().lower():
-            print("[Avito] ПОХОЖЕ НА КАПЧУ/БЛОКИРОВКУ — контент недоступен")
-            return results
-
-        cards = page.query_selector_all('[data-marker="item"]')
-        print(f"[Avito] Найдено карточек по селектору data-marker=item: {len(cards)}")
-
-        if len(cards) == 0:
-            # Печатаем кусок HTML для диагностики
-            html_snippet = page.content()[:1500]
-            print("[Avito] HTML-фрагмент для диагностики:")
-            print(html_snippet)
-
-        for c in cards:
-            try:
-                link_el = c.query_selector('a[data-marker="item-title"]')
-                if not link_el:
-                    continue
-                href = link_el.get_attribute("href")
-                url = "https://www.avito.ru" + href if href.startswith("/") else href
-                title_text = link_el.inner_text().strip()
-                price_el = c.query_selector('[itemprop="price"]') or c.query_selector('[data-marker="item-price"]')
-                price = price_el.inner_text().strip() if price_el else ""
-                results.append({
-                    "id": make_id("avito", url),
-                    "source": "Avito",
-                    "title": title_text,
-                    "price": price,
-                    "url": url,
-                })
-            except Exception as e:
-                print("[Avito] Ошибка обработки карточки:", e)
-    except Exception as e:
-        print("[Avito] Ошибка загрузки страницы:", e)
-    print(f"[Avito] ИТОГО обработано объявлений: {len(results)}")
-    return results
-
+# ---------- ЦИАН (нужен JS, используем Playwright) ----------
 
 def parse_cian(page):
     results = []
     try:
         page.goto(CIAN_URL, timeout=60000)
         page.wait_for_timeout(6000)
-
         title = page.title()
         print(f"[Циан] Заголовок страницы: {title}")
 
         cards = page.query_selector_all('[data-name="CardComponent"]')
-        print(f"[Циан] Найдено карточек по селектору CardComponent: {len(cards)}")
+        print(f"[Циан] Найдено карточек: {len(cards)}")
 
         for c in cards:
             try:
@@ -104,10 +67,115 @@ def parse_cian(page):
                     "url": url,
                 })
             except Exception as e:
-                print("[Циан] Ошибка обработки карточки:", e)
+                print("[Циан] Ошибка карточки:", e)
     except Exception as e:
-        print("[Циан] Ошибка загрузки страницы:", e)
-    print(f"[Циан] ИТОГО обработано объявлений: {len(results)}")
+        print("[Циан] Ошибка страницы:", e)
+    print(f"[Циан] ИТОГО: {len(results)}")
+    return results
+
+
+# ---------- ru09.ru (обычный HTML, requests хватает) ----------
+
+def parse_ru09():
+    results = []
+    try:
+        r = requests.get(RU09_URL, headers=HEADERS, timeout=30)
+        print(f"[ru09] Статус ответа: {r.status_code}")
+        r.encoding = "windows-1251"
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        links = soup.find_all("a", href=re.compile(r"subaction=detail&id=\d+"))
+        print(f"[ru09] Найдено ссылок на объявления: {len(links)}")
+
+        seen_ids = set()
+        for link in links:
+            href = link.get("href")
+            m = re.search(r"id=(\d+)", href)
+            if not m:
+                continue
+            item_id = m.group(1)
+            if item_id in seen_ids:
+                continue
+            seen_ids.add(item_id)
+
+            full_url = href if href.startswith("http") else "https://www.tomsk.ru09.ru" + href
+            title_text = link.get_text(strip=True)
+            if not title_text:
+                continue
+
+            # Цена — ищем рядом в родительском блоке
+            price = ""
+            parent = link.find_parent()
+            if parent:
+                price_match = re.search(r"[\d\s]{4,}\s*т\.р\.|[\d\s]{4,}\s*руб", parent.get_text())
+                if price_match:
+                    price = price_match.group(0).strip()
+
+            results.append({
+                "id": make_id("ru09", full_url),
+                "source": "RU09",
+                "title": title_text,
+                "price": price,
+                "url": full_url,
+            })
+
+        if len(links) == 0:
+            print("[ru09] HTML-фрагмент для диагностики:")
+            print(r.text[:1500])
+    except Exception as e:
+        print("[ru09] Ошибка:", e)
+    print(f"[ru09] ИТОГО: {len(results)}")
+    return results
+
+
+# ---------- sibdom.ru (обычный HTML, requests хватает) ----------
+
+def parse_sibdom():
+    results = []
+    try:
+        r = requests.get(SIBDOM_URL, headers=HEADERS, timeout=30)
+        print(f"[Sibdom] Статус ответа: {r.status_code}")
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        links = soup.find_all("a", href=re.compile(r"/stickers/view/\d+"))
+        print(f"[Sibdom] Найдено ссылок на объявления: {len(links)}")
+
+        seen_ids = set()
+        for link in links:
+            href = link.get("href")
+            m = re.search(r"/stickers/view/(\d+)", href)
+            if not m:
+                continue
+            item_id = m.group(1)
+            if item_id in seen_ids:
+                continue
+            seen_ids.add(item_id)
+
+            full_url = href if href.startswith("http") else "https://tomsk.sibdom.ru" + href
+            full_text = link.get_text(strip=True)
+            if not full_text:
+                continue
+
+            price_match = re.search(r"[\d\s]{5,}\s*₽", full_text)
+            price = price_match.group(0).strip() if price_match else ""
+
+            title_match = re.match(r"^(.*?квартира[^0-9]*\d[.,]?\d*\s*м²)", full_text)
+            title_text = title_match.group(1).strip() if title_match else full_text[:80]
+
+            results.append({
+                "id": make_id("sibdom", full_url),
+                "source": "Сибдом",
+                "title": title_text,
+                "price": price,
+                "url": full_url,
+            })
+
+        if len(links) == 0:
+            print("[Sibdom] HTML-фрагмент для диагностики:")
+            print(r.text[:1500])
+    except Exception as e:
+        print("[Sibdom] Ошибка:", e)
+    print(f"[Sibdom] ИТОГО: {len(results)}")
     return results
 
 
@@ -118,17 +186,14 @@ def main():
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-            locale="ru-RU",
-            viewport={"width": 1366, "height": 900},
-        )
-
-        avito_items = parse_avito(page)
+        page = browser.new_page(user_agent=HEADERS["User-Agent"], locale="ru-RU")
         cian_items = parse_cian(page)
-        fresh = avito_items + cian_items
-
         browser.close()
+
+    ru09_items = parse_ru09()
+    sibdom_items = parse_sibdom()
+
+    fresh = cian_items + ru09_items + sibdom_items
 
     now = datetime.now(timezone.utc).isoformat()
     merged = []
