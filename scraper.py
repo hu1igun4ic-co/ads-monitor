@@ -57,12 +57,19 @@ def parse_cian(page):
                 url = link_el.get_attribute("href")
                 title_el = c.query_selector('[data-mark="OfferTitle"]')
                 title_text = title_el.inner_text().strip() if title_el else link_el.inner_text().strip()
+
+                geo_els = c.query_selector_all('a[data-name="GeoLabel"]')
+                address_parts = [g.inner_text().strip() for g in geo_els if g.inner_text().strip()]
+                address = ", ".join(address_parts)
+
+                full_title = f"{title_text} — {address}" if address else title_text
+
                 price_el = c.query_selector('[data-mark="MainPrice"]')
                 price = price_el.inner_text().strip() if price_el else ""
                 results.append({
                     "id": make_id("cian", url),
                     "source": "ЦИАН",
-                    "title": title_text,
+                    "title": full_title,
                     "price": price,
                     "url": url,
                 })
@@ -72,7 +79,6 @@ def parse_cian(page):
         print("[Циан] Ошибка страницы:", e)
     print(f"[Циан] ИТОГО: {len(results)}")
     return results
-
 
 # ---------- ru09.ru (обычный HTML, requests хватает) ----------
 
@@ -106,22 +112,29 @@ def parse_ru09():
             full_url = href if href.startswith("http") else "https://www.tomsk.ru09.ru" + href
 
             price = ""
+            address = ""
             block = link
             for _ in range(4):
                 block = block.find_parent()
                 if block is None:
                     break
                 strong = block.find(["strong", "b"])
-                if strong:
+                if strong and not price:
                     digits = re.sub(r"\D", "", strong.get_text())
                     if 3 <= len(digits) <= 6:
                         price = f"{int(digits):,} тыс.руб.".replace(",", " ")
-                        break
+                map_link = block.find("a", href=re.compile(r"/map/#l="))
+                if map_link and not address:
+                    address = map_link.get_text(strip=True)
+                if price and address:
+                    break
+
+            full_title = f"{text} — {address}" if address else text
 
             results.append({
                 "id": make_id("ru09", full_url),
                 "source": "RU09",
-                "title": text,
+                "title": full_title,
                 "price": price,
                 "url": full_url,
             })
@@ -133,7 +146,6 @@ def parse_ru09():
         print("[ru09] Ошибка:", e)
     print(f"[ru09] ИТОГО: {len(results)}")
     return results
-
 
 # ---------- sibdom.ru (обычный HTML, requests хватает) ----------
 
