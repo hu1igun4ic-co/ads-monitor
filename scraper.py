@@ -170,7 +170,7 @@ def parse_ru09():
 
 # ---------- AVITO (через Playwright для обхода защиты) ----------
 
-AVITO_URL = "https://www.avito.ru/tomsk/kvartiry/prodam/vtorichka-ASgBAgICAkSSA8YQ5geMUg?context=H4sIAAAAAAAA_wEmANn_YToxOntzOjE6InkiO3M6MTY6IllBaERTYURxd0J5Tm5Cc1QiO30t13rSJgAAAA&f=ASgBAgICA0SSA8YQ5geMUpC~DZauNQ"
+AVITO_URL = "https://www.avito.ru/tomsk/kvartiry/prodam/vtorichka-ASgBAgICAkSSA8YQ5geMUg?context=H4sIAAAAAAAA_wEmANn_YToxOntzOjE6InkiO3M6MTY6Inh4ZWp1WjgxRkVMUjdJbEIiO30xbsfcJgAAAA&f=ASgBAQICA0SSA8YQ5geMUpC~DZauNQJAygjE_M8yilmarAGYrAGWrAGUrAGIWYZZhFmCWYBZ_ljAwQ0kvP03uv03&localPriority=0"
 
 def parse_avito(page):
     """Парсинг Avito с использованием Playwright (для обхода антибота)"""
@@ -503,3 +503,6 @@ def main():
     new_items = [i for i in merged if i['id'] not in existing_ids]
     print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {len(new_items)}")
     send_telegram(new_items)
+
+if __name__ == "__main__":
+    main()
