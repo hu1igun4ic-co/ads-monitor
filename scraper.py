@@ -227,6 +227,12 @@ def parse_avito(page):
             html = page.content()
             with open("avito_debug.html", "w", encoding="utf-8") as f:
                 f.write(html[:10000])
+            
+            # ВЫВОДИМ СОДЕРЖИМОЕ В ЛОГ
+            print("[Avito] ===== НАЧАЛО DEBUG HTML =====")
+            print(html[:3000])  # Первые 3000 символов
+            print("[Avito] ===== КОНЕЦ DEBUG HTML =====")
+            
             return results
         
         print(f"[Avito] Найдено карточек: {len(cards)}")
@@ -273,21 +279,12 @@ def parse_avito(page):
             with open("avito_debug.html", "w", encoding="utf-8") as f:
                 f.write(html[:10000])
             print("[Avito] Сохранён debug-файл avito_debug.html")
+            print("[Avito] ===== НАЧАЛО DEBUG HTML =====")
+            print(html[:3000])
+            print("[Avito] ===== КОНЕЦ DEBUG HTML =====")
         except:
             pass
     
-    return results
-if not cards:
-    html = page.content()
-    with open("avito_debug.html", "w", encoding="utf-8") as f:
-        f.write(html[:10000])
-    
-    # ВЫВОДИМ СОДЕРЖИМОЕ В ЛОГ
-    print("[Avito] ===== НАЧАЛО DEBUG HTML =====")
-    print(html[:3000])  # Первые 3000 символов
-    print("[Avito] ===== КОНЕЦ DEBUG HTML =====")
-    
-    print("[Avito] Карточки не найдены. Сохранён avito_debug.html")
     return results
 
 # ---------- sibdom.ru (обычный HTML, requests хватает) ----------
