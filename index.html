@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Мониторинг квартир — ЦИАН, RU09, Сибдом</title>
+<title>ETAGI — мониторинг квартир</title>
 <style>
   * {
     margin: 0;
@@ -15,42 +15,60 @@
     background: #0d1117;
     color: #e6edf3;
     min-height: 100vh;
-    padding: 20px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  h1 {
+  /* ===== ХЕДЕР ===== */
+  .header {
     text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .header h1 {
+    font-size: 23px;
     font-weight: 700;
-    font-size: 28px;
+    letter-spacing: 1px;
     background: linear-gradient(135deg, #58a6ff, #f0883e);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
   }
 
+  .header .sub {
+    font-size: 7px;
+    color: #8b949e;
+    letter-spacing: 2px;
+    margin-top: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  /* ===== ФИЛЬТРЫ ===== */
   .filters {
-    max-width: 1200px;
-    margin: 0 auto 24px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto 20px;
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
     background: #161b22;
-    padding: 16px 20px;
-    border-radius: 12px;
+    padding: 12px 18px;
+    border-radius: 10px;
     border: 1px solid #30363d;
   }
 
   .filters input {
-    padding: 10px 14px;
+    padding: 8px 12px;
     border: 1px solid #30363d;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 6px;
+    font-size: 13px;
     background: #0d1117;
     color: #e6edf3;
-    transition: border 0.2s, box-shadow 0.2s;
     outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
   }
 
   .filters input::placeholder {
@@ -59,112 +77,185 @@
 
   .filters input:focus {
     border-color: #58a6ff;
-    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.12);
   }
 
   .filters input[type="text"] {
     flex: 1;
-    min-width: 200px;
+    min-width: 180px;
   }
 
   .filters input[type="number"] {
-    width: 140px;
+    width: 120px;
   }
 
+  /* ===== СЧЁТЧИК ===== */
   .count {
     text-align: center;
     color: #8b949e;
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 900px;
   }
 
-  .count span {
-    color: #f0883e;
-    font-weight: 600;
-  }
-
+  /* ===== СПИСОК (1 КОЛОНКА) ===== */
   .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 18px;
-    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 900px;
+    width: 100%;
     margin: 0 auto;
   }
 
+  /* ===== КАРТОЧКА ===== */
   .card {
     background: #161b22;
-    border-radius: 12px;
-    padding: 18px 20px;
+    border-radius: 10px;
+    padding: 12px 16px;
     border: 1px solid #30363d;
-    transition: transform 0.15s, border-color 0.2s, box-shadow 0.2s;
-    position: relative;
+    transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    align-items: center;
+    gap: 14px;
+    cursor: default;
+    position: relative;
+    min-height: 70px;
   }
 
   .card:hover {
-    transform: translateY(-3px);
     border-color: #58a6ff;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    background: #1c2128;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
   .card.new {
     border-color: #f0883e;
-    background: #1c1b16;
   }
 
-  .card .badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    width: fit-content;
-    margin-right: 4px;
-  }
-
-  .badge.source {
-    background: #1f6feb;
-    color: #fff;
-  }
-
-  .badge.new-badge {
-    background: #d29922;
-    color: #0d1117;
-  }
-
-  .badge.also {
-    background: #21262d;
-    color: #8b949e;
+  /* ===== ПРЕВЬЮ КАРТИНКИ ===== */
+  .card .preview {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #0d1117;
     border: 1px solid #30363d;
+    flex-shrink: 0;
   }
 
-  .card .title {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.4;
-    margin: 4px 0 2px;
-    color: #f0f6fc;
-  }
-
-  .card .price {
+  .card .preview-placeholder {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 20px;
+    color: #30363d;
+    flex-shrink: 0;
+  }
+
+  /* ===== ИНФО-БЛОК ===== */
+  .card .info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* АДРЕС — всегда виден */
+  .card .address {
+    font-size: 15px;
+    font-weight: 500;
+    color: #f0f6fc;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ===== СКРЫТЫЙ КОНТЕНТ (показывается при наведении) ===== */
+  .card .hidden-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.2s ease;
+    margin-top: 0;
+  }
+
+  .card:hover .hidden-content {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 4px;
+  }
+
+  .card .hidden-content .price {
+    font-size: 16px;
     font-weight: 700;
     color: #f0883e;
-    margin: 4px 0;
+    white-space: nowrap;
   }
 
+  .card .hidden-content .phone {
+    font-size: 13px;
+    color: #58a6ff;
+    background: #0d1117;
+    padding: 1px 10px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+  }
+
+  .card .hidden-content .source-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding: 1px 10px;
+    border-radius: 12px;
+    background: #1f6feb;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .card .hidden-content .new-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1px 10px;
+    border-radius: 12px;
+    background: #d29922;
+    color: #0d1117;
+    white-space: nowrap;
+  }
+
+  .card .hidden-content .also-badge {
+    font-size: 10px;
+    color: #8b949e;
+    background: #21262d;
+    padding: 1px 10px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+  }
+
+  /* ССЫЛКА — появляется при наведении */
   .card .url-link {
     color: #58a6ff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
-    margin-top: 4px;
     transition: color 0.15s;
-    width: fit-content;
+    white-space: nowrap;
   }
 
   .card .url-link:hover {
@@ -172,47 +263,60 @@
     text-decoration: underline;
   }
 
-  .card .meta {
-    font-size: 12px;
-    color: #8b949e;
-    margin-top: 4px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-  }
-
+  /* ===== ПУСТОЙ СОСТОЯНИЕ ===== */
   .empty {
     text-align: center;
     color: #8b949e;
-    margin-top: 60px;
-    font-size: 16px;
+    margin-top: 50px;
+    font-size: 14px;
   }
 
-  @media (max-width: 640px) {
-    .filters input[type="number"] {
-      width: 100%;
+  /* ===== АДАПТИВ ===== */
+  @media (max-width: 600px) {
+    body { padding: 16px 10px; }
+    .card { flex-wrap: wrap; gap: 10px; }
+    .card .preview,
+    .card .preview-placeholder {
+      width: 60px;
+      height: 45px;
     }
-    .grid {
-      grid-template-columns: 1fr;
+    .card .address { font-size: 13px; white-space: normal; }
+    .filters input[type="number"] { width: 100%; }
+    .filters input[type="text"] { min-width: 140px; }
+    .card:hover .hidden-content { max-height: 120px; }
+    .header h1 { font-size: 20px; }
+  }
+
+  @media (max-width: 420px) {
+    .card .preview,
+    .card .preview-placeholder {
+      width: 50px;
+      height: 38px;
     }
-    h1 {
-      font-size: 22px;
-    }
+    .card .address { font-size: 12px; }
+    .card .hidden-content .price { font-size: 14px; }
+    .card .hidden-content .phone { font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
-<h1>🏠 Мониторинг квартир</h1>
+<!-- ===== ХЕДЕР ===== -->
+<div class="header">
+  <h1>ETAGI</h1>
+  <div class="sub">by hu1igun4ic</div>
+</div>
 
+<!-- ===== ФИЛЬТРЫ ===== -->
 <div class="filters">
-  <input type="text" id="searchBox" placeholder="🔍 Поиск по району, адресу...">
+  <input type="text" id="searchBox" placeholder="🔍 Поиск по адресу...">
   <input type="number" id="priceMin" placeholder="₽ от">
   <input type="number" id="priceMax" placeholder="₽ до">
 </div>
 
 <p class="count" id="count">Загрузка...</p>
+
+<!-- ===== СПИСОК ===== -->
 <div id="list" class="grid"></div>
 <p id="empty" class="empty" style="display:none;">Пока нет данных. Дождитесь первого запуска парсера.</p>
 
@@ -237,39 +341,57 @@ function render() {
     return true;
   });
 
-  document.getElementById('count').textContent = `📊 Показано: ${filtered.length} из ${allData.length}`;
+  document.getElementById('count').textContent = `📊 ${filtered.length} из ${allData.length}`;
 
   const list = document.getElementById('list');
   list.innerHTML = '';
+
   if (!filtered.length) {
     document.getElementById('empty').style.display = 'block';
-    document.getElementById('empty').textContent = allData.length ? '🔍 Ничего не найдено по фильтру.' : '⏳ Пока нет данных.';
+    document.getElementById('empty').textContent = allData.length ? '🔍 Ничего не найдено.' : '⏳ Нет данных.';
     return;
   }
   document.getElementById('empty').style.display = 'none';
 
   const dayAgo = Date.now() - 24 * 60 * 60 * 1000;
+
   filtered.forEach(item => {
     const isNew = new Date(item.first_seen).getTime() > dayAgo;
     const card = document.createElement('div');
     card.className = 'card' + (isNew ? ' new' : '');
+
+    // Источники для бейджей "Также"
     const alsoOn = (item.also_on || []).length
-      ? `<span class="badge also">➕ Также: ${item.also_on.join(', ')}</span>` : '';
+      ? `<span class="also-badge">➕ ${item.also_on.join(', ')}</span>` : '';
+
+    // Телефон (если есть в данных, иначе заглушка)
+    const phone = item.phone || '+7 (XXX) XXX-XX-XX';
+
+    // Превью (если есть картинка)
+    const previewHtml = item.image
+      ? `<img class="preview" src="${item.image}" alt="Фото" loading="lazy" onerror="this.style.display='none'">`
+      : `<div class="preview-placeholder">🏠</div>`;
+
     card.innerHTML = `
-      <div>
-        <span class="badge source">${item.source}</span>
-        ${isNew ? '<span class="badge new-badge">🔥 Новое</span>' : ''}
-        ${alsoOn}
+      ${previewHtml}
+      <div class="info">
+        <div class="address">${item.title}</div>
+        <div class="hidden-content">
+          <span class="price">${item.price}</span>
+          <span class="phone">📞 ${phone}</span>
+          <span class="source-badge">${item.source}</span>
+          ${isNew ? '<span class="new-badge">🔥 Новое</span>' : ''}
+          ${alsoOn}
+          <a class="url-link" href="${item.url}" target="_blank">→ Открыть</a>
+        </div>
       </div>
-      <div class="title">${item.title}</div>
-      <div class="price">${item.price}</div>
-      <a class="url-link" href="${item.url}" target="_blank">→ Открыть объявление</a>
-      <div class="meta">🕒 ${new Date(item.first_seen).toLocaleDateString('ru-RU')}</div>
     `;
+
     list.appendChild(card);
   });
 }
 
+// Загрузка данных
 fetch('data.json?_=' + Date.now())
   .then(r => r.json())
   .then(data => {
@@ -278,9 +400,10 @@ fetch('data.json?_=' + Date.now())
   })
   .catch(() => {
     document.getElementById('empty').style.display = 'block';
-    document.getElementById('empty').textContent = '❌ Не удалось загрузить данные.';
+    document.getElementById('empty').textContent = '❌ Ошибка загрузки данных.';
   });
 
+// Фильтры
 document.getElementById('searchBox').addEventListener('input', render);
 document.getElementById('priceMin').addEventListener('input', render);
 document.getElementById('priceMax').addEventListener('input', render);
