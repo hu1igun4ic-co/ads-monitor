@@ -20,7 +20,7 @@
     padding: 20px 20px 40px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;  /* ВСЁ ПО ЦЕНТРУ */
+    align-items: center;
   }
 
   /* ===== ХЕДЕР (ПО ЦЕНТРУ) ===== */
@@ -33,19 +33,17 @@
 
   .header h1 {
     font-family: 'Druk Wide', 'Impact', 'Arial Black', sans-serif;
-    font-size: 153px;        /* 230px / 1.5 */
+    font-size: 153px;
     font-weight: 700;
     letter-spacing: 4px;
     line-height: 1;
-    background: linear-gradient(135deg, #58a6ff, #f0883e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #cc5500;
     margin-bottom: -8px;
   }
 
   .header .sub {
     font-family: 'Druk Wide', 'Impact', 'Arial Black', sans-serif;
-    font-size: 47px;          /* 70px / 1.5 */
+    font-size: 47px;
     color: #8b949e;
     letter-spacing: 6px;
     text-transform: uppercase;
@@ -80,8 +78,8 @@
   }
 
   .filters input:focus {
-    border-color: #58a6ff;
-    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.12);
+    border-color: #cc5500;
+    box-shadow: 0 0 0 3px rgba(204, 85, 0, 0.15);
   }
 
   .filters input[type="text"] {
@@ -102,12 +100,18 @@
     max-width: 1100px;
   }
 
-  /* ===== СПИСОК (1 КОЛОНКА) ===== */
+  /* ===== КОНТЕЙНЕР СПИСКА (СМЕЩЁН ВЛЕВО) ===== */
+  .list-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
   .grid {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    max-width: 1100px;
     width: 100%;
   }
 
@@ -118,7 +122,7 @@
     padding: 14px 18px;
     border: 1px solid #30363d;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row-reverse;   /* КАРТИНКА СПРАВА */
     align-items: center;
     gap: 18px;
     transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
@@ -126,38 +130,50 @@
   }
 
   .card:hover {
-    border-color: #58a6ff;
+    border-color: #cc5500;
     background: #1c2128;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 20px rgba(204, 85, 0, 0.2);
   }
 
   .card.new {
-    border-color: #f0883e;
+    border-color: #cc5500;
+    border-width: 2px;
   }
 
-  /* ===== ПРЕВЬЮ КАРТИНКИ (СПРАВА) ===== */
-  .card .preview {
+  /* ===== ПРЕВЬЮ КАРТИНКИ (СПРАВА) С УВЕЛИЧЕНИЕМ ===== */
+  .card .preview-wrap {
+    flex-shrink: 0;
     width: 120px;
     height: 90px;
     border-radius: 6px;
-    object-fit: cover;
-    background: #0d1117;
+    overflow: hidden;
     border: 1px solid #30363d;
-    flex-shrink: 0;
+    background: #0d1117;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover .preview-wrap {
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(204, 85, 0, 0.25);
+    border-color: #cc5500;
+  }
+
+  .card .preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .card .preview-placeholder {
-    width: 120px;
-    height: 90px;
-    border-radius: 6px;
-    background: #0d1117;
-    border: 1px solid #30363d;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    font-size: 28px;
     color: #30363d;
-    flex-shrink: 0;
+    background: #0d1117;
   }
 
   /* ===== ИНФО-БЛОК ===== */
@@ -200,13 +216,13 @@
   .card .hidden-content .price {
     font-size: 18px;
     font-weight: 700;
-    color: #f0883e;
+    color: #cc5500;
   }
 
   .card .hidden-content .phone {
     font-size: 20px;
     font-weight: 600;
-    color: #58a6ff;
+    color: #e07c2e;
     background: #0d1117;
     padding: 2px 14px;
     border-radius: 20px;
@@ -217,7 +233,7 @@
   }
 
   .card .hidden-content .url-link {
-    color: #58a6ff;
+    color: #e07c2e;
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
@@ -225,7 +241,7 @@
     width: fit-content;
   }
   .card .hidden-content .url-link:hover {
-    color: #79c0ff;
+    color: #f0883e;
     text-decoration: underline;
   }
 
@@ -236,7 +252,7 @@
     letter-spacing: 0.3px;
     padding: 1px 12px;
     border-radius: 12px;
-    background: #1f6feb;
+    background: #cc5500;
     color: #fff;
     width: fit-content;
   }
@@ -246,8 +262,8 @@
     text-transform: uppercase;
     padding: 1px 12px;
     border-radius: 12px;
-    background: #d29922;
-    color: #0d1117;
+    background: #cc5500;
+    color: #fff;
     width: fit-content;
   }
   .card .hidden-content .also-badge {
@@ -284,7 +300,7 @@
   }
 
   .card .actions button:hover {
-    border-color: #58a6ff;
+    border-color: #cc5500;
     color: #e6edf3;
   }
 
@@ -332,13 +348,13 @@
   }
 
   .pagination button:hover {
-    border-color: #58a6ff;
+    border-color: #cc5500;
     color: #e6edf3;
   }
 
   .pagination button.active {
-    background: #1f6feb;
-    border-color: #1f6feb;
+    background: #cc5500;
+    border-color: #cc5500;
     color: #fff;
   }
 
@@ -361,10 +377,12 @@
     .header h1 { font-size: 60px; }
     .header .sub { font-size: 22px; }
     .card { flex-wrap: wrap; flex-direction: column-reverse; align-items: stretch; }
-    .card .preview,
-    .card .preview-placeholder {
+    .card .preview-wrap {
       width: 100%;
       height: 140px;
+    }
+    .card:hover .preview-wrap {
+      transform: scale(1.03);
     }
     .card .address { white-space: normal; }
     .card .hidden-content .phone { font-size: 18px; }
@@ -380,13 +398,13 @@
 </head>
 <body>
 
-<!-- ===== ХЕДЕР (ПО ЦЕНТРУ) ===== -->
+<!-- ===== ХЕДЕР ===== -->
 <div class="header">
   <h1>ETAGI</h1>
   <div class="sub">by hu1igun4ic</div>
 </div>
 
-<!-- ===== ФИЛЬТРЫ (ПО ЦЕНТРУ) ===== -->
+<!-- ===== ФИЛЬТРЫ ===== -->
 <div class="filters">
   <input type="text" id="searchBox" placeholder="Поиск по адресу...">
   <input type="number" id="priceMin" placeholder="Цена от">
@@ -395,8 +413,10 @@
 
 <p class="count" id="count">Загрузка...</p>
 
-<!-- ===== СПИСОК ===== -->
-<div id="list" class="grid"></div>
+<!-- ===== СПИСОК (СМЕЩЁН ВЛЕВО) ===== -->
+<div class="list-wrapper">
+  <div id="list" class="grid"></div>
+</div>
 
 <!-- ===== ПАГИНАЦИЯ ===== -->
 <div class="pagination" id="pagination"></div>
@@ -464,8 +484,8 @@ function render() {
     const phone = item.phone || '+7 (3822) XXX-XX-XX';
 
     const previewHtml = item.image
-      ? '<img class="preview" src="' + item.image + '" alt="Фото" loading="lazy" onerror="this.style.display=\'none\'">'
-      : '<div class="preview-placeholder">🏠</div>';
+      ? '<div class="preview-wrap"><img class="preview" src="' + item.image + '" alt="Фото" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>'
+      : '<div class="preview-wrap"><div class="preview-placeholder">🏠</div></div>';
 
     const uid = 'card-' + Date.now() + '-' + index;
 
