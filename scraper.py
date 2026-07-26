@@ -158,29 +158,37 @@ def parse_sibdom():
             if item_id in seen_ids:
                 continue
 
-            title_attr = link.get("title") or ""
-            price_match = re.search(r"([\d]{6,})\s*рубл", title_attr)
+            # Собираем текст отовсюду: сам текст ссылки, title, alt картинок внутри
+            pieces = [link.get_text(" ", strip=True), link.get("title", "")]
+            for img in link.find_all("img"):
+                pieces.append(img.get("alt", ""))
+            combined = " ".join(p for p in pieces if p)
+
+            price_match = re.search(r"(\d{6,})\s*рубл", combined)
             if not price_match:
-                continue  # без title-атрибута с ценой пропускаем — это не карточка объявления
+                continue
 
             seen_ids.add(item_id)
             price_num = int(price_match.group(1))
             price = f"{price_num:,} ₽".replace(",", " ")
-            title_text = title_attr[:price_match.start()].strip().rstrip(",")
+            title_text = combined[:price_match.start()].strip()
+            title_text = re.sub(r"^Продается\s*", "", title_text).strip().rstrip(",")
+            if not title_text:
+                title_text = "Квартира"
 
             full_url = href if href.startswith("http") else "https://tomsk.sibdom.ru" + href
 
             results.append({
                 "id": make_id("sibdom", full_url),
                 "source": "Сибдом",
-                "title": title_text,
+                "title": title_text[:100],
                 "price": price,
                 "url": full_url,
             })
 
         if not results:
             print("[Sibdom] HTML-фрагмент для диагностики:")
-            print(r.text[:1500])
+            print(r.text[:2000])
     except Exception as e:
         print("[Sibdom] Ошибка:", e)
     print(f"[Sibdom] ИТОГО: {len(results)}")
