@@ -30,8 +30,25 @@ def parse_avito(page):
     results = []
     try:
         page.goto(AVITO_URL, timeout=60000)
-        page.wait_for_timeout(5000)
+        page.wait_for_timeout(6000)
+
+        title = page.title()
+        print(f"[Avito] Заголовок страницы: {title}")
+
+        # Проверка на капчу/блокировку
+        if "проверка" in title.lower() or "доступ" in title.lower() or "captcha" in page.content().lower():
+            print("[Avito] ПОХОЖЕ НА КАПЧУ/БЛОКИРОВКУ — контент недоступен")
+            return results
+
         cards = page.query_selector_all('[data-marker="item"]')
+        print(f"[Avito] Найдено карточек по селектору data-marker=item: {len(cards)}")
+
+        if len(cards) == 0:
+            # Печатаем кусок HTML для диагностики
+            html_snippet = page.content()[:1500]
+            print("[Avito] HTML-фрагмент для диагностики:")
+            print(html_snippet)
+
         for c in cards:
             try:
                 link_el = c.query_selector('a[data-marker="item-title"]')
@@ -39,20 +56,21 @@ def parse_avito(page):
                     continue
                 href = link_el.get_attribute("href")
                 url = "https://www.avito.ru" + href if href.startswith("/") else href
-                title = link_el.inner_text().strip()
+                title_text = link_el.inner_text().strip()
                 price_el = c.query_selector('[itemprop="price"]') or c.query_selector('[data-marker="item-price"]')
                 price = price_el.inner_text().strip() if price_el else ""
                 results.append({
                     "id": make_id("avito", url),
                     "source": "Avito",
-                    "title": title,
+                    "title": title_text,
                     "price": price,
                     "url": url,
                 })
             except Exception as e:
-                print("Avito card error:", e)
+                print("[Avito] Ошибка обработки карточки:", e)
     except Exception as e:
-        print("Avito page error:", e)
+        print("[Avito] Ошибка загрузки страницы:", e)
+    print(f"[Avito] ИТОГО обработано объявлений: {len(results)}")
     return results
 
 
@@ -60,29 +78,36 @@ def parse_cian(page):
     results = []
     try:
         page.goto(CIAN_URL, timeout=60000)
-        page.wait_for_timeout(5000)
+        page.wait_for_timeout(6000)
+
+        title = page.title()
+        print(f"[Циан] Заголовок страницы: {title}")
+
         cards = page.query_selector_all('[data-name="CardComponent"]')
+        print(f"[Циан] Найдено карточек по селектору CardComponent: {len(cards)}")
+
         for c in cards:
             try:
-                link_el = c.query_selector('a[data-name="CardComponentLink"] , a[href*="cian.ru/sale/flat"]')
+                link_el = c.query_selector('a[data-name="CardComponentLink"]') or c.query_selector('a[href*="cian.ru/sale/flat"]')
                 if not link_el:
                     continue
                 url = link_el.get_attribute("href")
                 title_el = c.query_selector('[data-mark="OfferTitle"]')
-                title = title_el.inner_text().strip() if title_el else link_el.inner_text().strip()
+                title_text = title_el.inner_text().strip() if title_el else link_el.inner_text().strip()
                 price_el = c.query_selector('[data-mark="MainPrice"]')
                 price = price_el.inner_text().strip() if price_el else ""
                 results.append({
                     "id": make_id("cian", url),
                     "source": "ЦИАН",
-                    "title": title,
+                    "title": title_text,
                     "price": price,
                     "url": url,
                 })
             except Exception as e:
-                print("Cian card error:", e)
+                print("[Циан] Ошибка обработки карточки:", e)
     except Exception as e:
-        print("Cian page error:", e)
+        print("[Циан] Ошибка загрузки страницы:", e)
+    print(f"[Циан] ИТОГО обработано объявлений: {len(results)}")
     return results
 
 
@@ -94,10 +119,15 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+            locale="ru-RU",
+            viewport={"width": 1366, "height": 900},
         )
 
-        fresh = parse_avito(page) + parse_cian(page)
+        avito_items = parse_avito(page)
+        cian_items = parse_cian(page)
+        fresh = avito_items + cian_items
+
         browser.close()
 
     now = datetime.now(timezone.utc).isoformat()
@@ -112,7 +142,7 @@ def main():
 
     merged.sort(key=lambda x: x["first_seen"], reverse=True)
     save(merged)
-    print(f"Всего объявлений: {len(merged)}, новых за этот запуск: {sum(1 for i in merged if i['id'] not in existing_ids)}")
+    print(f"ВСЕГО объявлений сохранено: {len(merged)}, новых за этот запуск: {sum(1 for i in merged if i['id'] not in existing_ids)}")
 
 
 if __name__ == "__main__":
