@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>ETAGI — мониторинг квартир</title>
 <style>
+  /* ===== RESET & BASE ===== */
   * {
     margin: 0;
     padding: 0;
@@ -15,64 +16,63 @@
     background: #0d1117;
     color: #e6edf3;
     min-height: 100vh;
-    padding: 30px 20px;
+    padding: 20px 20px 40px 40px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;  /* ВСЁ СМЕЩЕНО ВЛЕВО */
   }
 
-  /* ===== ХЕДЕР ===== */
+  /* ===== ХЕДЕР (ОГРОМНЫЙ) ===== */
   .header {
-    text-align: center;
-    margin-bottom: 30px;
+    text-align: left;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1100px;
   }
 
   .header h1 {
-    font-size: 23px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 230px;        /* 23px × 10 */
+    font-weight: 800;
+    letter-spacing: 4px;
+    line-height: 1;
     background: linear-gradient(135deg, #58a6ff, #f0883e);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: -10px;
   }
 
   .header .sub {
-    font-size: 7px;
+    font-size: 70px;          /* 7px × 10 */
     color: #8b949e;
-    letter-spacing: 2px;
-    margin-top: 2px;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    opacity: 0.5;
+    opacity: 0.4;
+    margin-top: -10px;
   }
 
   /* ===== ФИЛЬТРЫ ===== */
   .filters {
-    max-width: 900px;
+    max-width: 1100px;
     width: 100%;
-    margin: 0 auto 20px;
+    margin: 0 0 16px 0;
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
-    justify-content: center;
     background: #161b22;
-    padding: 12px 18px;
+    padding: 14px 18px;
     border-radius: 10px;
     border: 1px solid #30363d;
   }
 
   .filters input {
-    padding: 8px 12px;
+    padding: 8px 14px;
     border: 1px solid #30363d;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 14px;
     background: #0d1117;
     color: #e6edf3;
     outline: none;
-    transition: border 0.2s, box-shadow 0.2s;
-  }
-
-  .filters input::placeholder {
-    color: #8b949e;
+    transition: border 0.2s;
   }
 
   .filters input:focus {
@@ -84,44 +84,41 @@
     flex: 1;
     min-width: 180px;
   }
-
   .filters input[type="number"] {
-    width: 120px;
+    width: 130px;
   }
 
   /* ===== СЧЁТЧИК ===== */
   .count {
-    text-align: center;
+    text-align: left;
     color: #8b949e;
-    font-size: 13px;
-    margin-bottom: 16px;
+    font-size: 14px;
+    margin-bottom: 14px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
   }
 
   /* ===== СПИСОК (1 КОЛОНКА) ===== */
   .grid {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: 900px;
+    gap: 12px;
+    max-width: 1100px;
     width: 100%;
-    margin: 0 auto;
   }
 
   /* ===== КАРТОЧКА ===== */
   .card {
     background: #161b22;
     border-radius: 10px;
-    padding: 12px 16px;
+    padding: 14px 18px;
     border: 1px solid #30363d;
-    transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
     display: flex;
+    flex-direction: row-reverse;   /* КАРТИНКА СПРАВА */
     align-items: center;
-    gap: 14px;
-    cursor: default;
-    position: relative;
-    min-height: 70px;
+    gap: 18px;
+    transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+    min-height: 90px;
   }
 
   .card:hover {
@@ -134,10 +131,10 @@
     border-color: #f0883e;
   }
 
-  /* ===== ПРЕВЬЮ КАРТИНКИ ===== */
+  /* ===== ПРЕВЬЮ КАРТИНКИ (СПРАВА) ===== */
   .card .preview {
-    width: 80px;
-    height: 60px;
+    width: 120px;
+    height: 90px;
     border-radius: 6px;
     object-fit: cover;
     background: #0d1117;
@@ -146,20 +143,20 @@
   }
 
   .card .preview-placeholder {
-    width: 80px;
-    height: 60px;
+    width: 120px;
+    height: 90px;
     border-radius: 6px;
     background: #0d1117;
     border: 1px solid #30363d;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 32px;
     color: #30363d;
     flex-shrink: 0;
   }
 
-  /* ===== ИНФО-БЛОК ===== */
+  /* ===== ИНФО-БЛОК (РАСШИРЕН) ===== */
   .card .info {
     flex: 1;
     min-width: 0;
@@ -170,7 +167,7 @@
 
   /* АДРЕС — всегда виден */
   .card .address {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     color: #f0f6fc;
     line-height: 1.3;
@@ -179,123 +176,205 @@
     text-overflow: ellipsis;
   }
 
-  /* ===== СКРЫТЫЙ КОНТЕНТ (показывается при наведении) ===== */
+  /* ===== СКРЫТЫЙ КОНТЕНТ (ПРИ НАВЕДЕНИИ) ===== */
   .card .hidden-content {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 14px;
+    flex-direction: column;    /* ВСЁ ДРУГ ПОД ДРУГОМ */
+    gap: 4px;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.2s ease;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.25s ease;
     margin-top: 0;
   }
 
   .card:hover .hidden-content {
-    max-height: 80px;
+    max-height: 220px;
     opacity: 1;
-    margin-top: 4px;
+    margin-top: 6px;
   }
 
+  /* ЦЕНА */
   .card .hidden-content .price {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #f0883e;
-    white-space: nowrap;
   }
 
+  /* ТЕЛЕФОН — БОЛЬШОЙ */
   .card .hidden-content .phone {
-    font-size: 13px;
+    font-size: 20px;
+    font-weight: 600;
     color: #58a6ff;
     background: #0d1117;
-    padding: 1px 10px;
-    border-radius: 12px;
+    padding: 2px 14px;
+    border-radius: 20px;
     border: 1px solid #30363d;
-    white-space: nowrap;
-  }
-
-  .card .hidden-content .source-badge {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
+    display: inline-block;
+    width: fit-content;
     letter-spacing: 0.3px;
-    padding: 1px 10px;
-    border-radius: 12px;
-    background: #1f6feb;
-    color: #fff;
-    white-space: nowrap;
   }
 
-  .card .hidden-content .new-badge {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 1px 10px;
-    border-radius: 12px;
-    background: #d29922;
-    color: #0d1117;
-    white-space: nowrap;
-  }
-
-  .card .hidden-content .also-badge {
-    font-size: 10px;
-    color: #8b949e;
-    background: #21262d;
-    padding: 1px 10px;
-    border-radius: 12px;
-    border: 1px solid #30363d;
-    white-space: nowrap;
-  }
-
-  /* ССЫЛКА — появляется при наведении */
-  .card .url-link {
+  /* ССЫЛКА */
+  .card .hidden-content .url-link {
     color: #58a6ff;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     transition: color 0.15s;
-    white-space: nowrap;
+    width: fit-content;
   }
-
-  .card .url-link:hover {
+  .card .hidden-content .url-link:hover {
     color: #79c0ff;
     text-decoration: underline;
   }
 
-  /* ===== ПУСТОЙ СОСТОЯНИЕ ===== */
+  /* БЕЙДЖИ */
+  .card .hidden-content .source-badge {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    padding: 1px 12px;
+    border-radius: 12px;
+    background: #1f6feb;
+    color: #fff;
+    width: fit-content;
+  }
+  .card .hidden-content .new-badge {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1px 12px;
+    border-radius: 12px;
+    background: #d29922;
+    color: #0d1117;
+    width: fit-content;
+  }
+  .card .hidden-content .also-badge {
+    font-size: 11px;
+    color: #8b949e;
+    background: #21262d;
+    padding: 1px 12px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    width: fit-content;
+  }
+
+  /* ===== КНОПКИ ОТРАБОТАЛ / ПОЗВОНИЛ ===== */
+  .card .actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  .card .actions button {
+    background: transparent;
+    border: 1px solid #30363d;
+    color: #8b949e;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card .actions button:hover {
+    border-color: #58a6ff;
+    color: #e6edf3;
+  }
+
+  .card .actions button.done {
+    border-color: #2ea043;
+    color: #2ea043;
+    background: rgba(46, 160, 67, 0.08);
+  }
+
+  .card .actions button .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #30363d;
+    transition: background 0.25s;
+  }
+
+  .card .actions button.done .dot {
+    background: #2ea043;
+    box-shadow: 0 0 8px rgba(46, 160, 67, 0.5);
+  }
+
+  /* ===== ПАГИНАЦИЯ ===== */
+  .pagination {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  .pagination button {
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: #8b949e;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .pagination button:hover {
+    border-color: #58a6ff;
+    color: #e6edf3;
+  }
+
+  .pagination button.active {
+    background: #1f6feb;
+    border-color: #1f6feb;
+    color: #fff;
+  }
+
+  .pagination button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* ===== ПУСТО ===== */
   .empty {
     text-align: center;
     color: #8b949e;
-    margin-top: 50px;
-    font-size: 14px;
+    margin-top: 40px;
+    font-size: 15px;
   }
 
   /* ===== АДАПТИВ ===== */
-  @media (max-width: 600px) {
-    body { padding: 16px 10px; }
-    .card { flex-wrap: wrap; gap: 10px; }
+  @media (max-width: 700px) {
+    body { padding: 16px 12px; }
+    .header h1 { font-size: 80px; }
+    .header .sub { font-size: 28px; }
+    .card { flex-wrap: wrap; flex-direction: column-reverse; align-items: stretch; }
     .card .preview,
     .card .preview-placeholder {
-      width: 60px;
-      height: 45px;
+      width: 100%;
+      height: 140px;
     }
-    .card .address { font-size: 13px; white-space: normal; }
+    .card .address { white-space: normal; }
+    .card .hidden-content .phone { font-size: 18px; }
     .filters input[type="number"] { width: 100%; }
-    .filters input[type="text"] { min-width: 140px; }
-    .card:hover .hidden-content { max-height: 120px; }
-    .header h1 { font-size: 20px; }
   }
 
-  @media (max-width: 420px) {
-    .card .preview,
-    .card .preview-placeholder {
-      width: 50px;
-      height: 38px;
-    }
-    .card .address { font-size: 12px; }
-    .card .hidden-content .price { font-size: 14px; }
-    .card .hidden-content .phone { font-size: 11px; }
+  @media (max-width: 480px) {
+    .header h1 { font-size: 50px; }
+    .header .sub { font-size: 20px; }
+    .card .hidden-content .phone { font-size: 16px; }
   }
 </style>
 </head>
@@ -318,62 +397,80 @@
 
 <!-- ===== СПИСОК ===== -->
 <div id="list" class="grid"></div>
+
+<!-- ===== ПАГИНАЦИЯ ===== -->
+<div class="pagination" id="pagination"></div>
+
 <p id="empty" class="empty" style="display:none;">Пока нет данных. Дождитесь первого запуска парсера.</p>
 
 <script>
 let allData = [];
+let currentPage = 1;
+const PER_PAGE = 15;
 
 function priceToNumber(price) {
   const digits = (price || "").replace(/\D/g, "");
   return digits ? parseInt(digits, 10) : null;
 }
 
-function render() {
+function getFiltered() {
   const search = document.getElementById('searchBox').value.trim().toLowerCase();
   const min = parseInt(document.getElementById('priceMin').value) || null;
   const max = parseInt(document.getElementById('priceMax').value) || null;
 
-  const filtered = allData.filter(item => {
+  return allData.filter(item => {
     if (search && !item.title.toLowerCase().includes(search)) return false;
     const p = priceToNumber(item.price);
     if (min && (!p || p < min)) return false;
     if (max && (!p || p > max)) return false;
     return true;
   });
+}
 
-  document.getElementById('count').textContent = `📊 ${filtered.length} из ${allData.length}`;
+function render() {
+  const filtered = getFiltered();
+  const totalPages = Math.ceil(filtered.length / PER_PAGE) || 1;
+
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * PER_PAGE;
+  const end = start + PER_PAGE;
+  const pageItems = filtered.slice(start, end);
+
+  document.getElementById('count').textContent =
+    `📊 ${filtered.length} объявлений — страница ${currentPage} из ${totalPages}`;
 
   const list = document.getElementById('list');
   list.innerHTML = '';
 
-  if (!filtered.length) {
+  if (!pageItems.length) {
     document.getElementById('empty').style.display = 'block';
     document.getElementById('empty').textContent = allData.length ? '🔍 Ничего не найдено.' : '⏳ Нет данных.';
+    document.getElementById('pagination').innerHTML = '';
     return;
   }
   document.getElementById('empty').style.display = 'none';
 
   const dayAgo = Date.now() - 24 * 60 * 60 * 1000;
 
-  filtered.forEach(item => {
+  pageItems.forEach((item, index) => {
     const isNew = new Date(item.first_seen).getTime() > dayAgo;
     const card = document.createElement('div');
     card.className = 'card' + (isNew ? ' new' : '');
 
-    // Источники для бейджей "Также"
     const alsoOn = (item.also_on || []).length
       ? `<span class="also-badge">➕ ${item.also_on.join(', ')}</span>` : '';
 
-    // Телефон (если есть в данных, иначе заглушка)
-    const phone = item.phone || '+7 (XXX) XXX-XX-XX';
+    const phone = item.phone || '+7 (3822) XXX-XX-XX';
 
-    // Превью (если есть картинка)
     const previewHtml = item.image
       ? `<img class="preview" src="${item.image}" alt="Фото" loading="lazy" onerror="this.style.display='none'">`
       : `<div class="preview-placeholder">🏠</div>`;
 
+    // Уникальный ID для кнопок
+    const uid = 'card-' + Date.now() + '-' + index;
+
     card.innerHTML = `
-      ${previewHtml}
       <div class="info">
         <div class="address">${item.title}</div>
         <div class="hidden-content">
@@ -382,20 +479,74 @@ function render() {
           <span class="source-badge">${item.source}</span>
           ${isNew ? '<span class="new-badge">🔥 Новое</span>' : ''}
           ${alsoOn}
-          <a class="url-link" href="${item.url}" target="_blank">→ Открыть</a>
+          <a class="url-link" href="${item.url}" target="_blank">→ Открыть объявление</a>
+        </div>
+        <div class="actions">
+          <button class="action-btn" data-id="${uid}" data-action="done">
+            <span class="dot"></span> Отработал(а)
+          </button>
+          <button class="action-btn" data-id="${uid}" data-action="called">
+            <span class="dot"></span> Позвонил(а)
+          </button>
         </div>
       </div>
+      ${previewHtml}
     `;
 
     list.appendChild(card);
   });
+
+  // ===== ОБРАБОТЧИКИ ДЛЯ КНОПОК =====
+  document.querySelectorAll('.action-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      this.classList.toggle('done');
+    });
+  });
+
+  renderPagination(totalPages);
 }
 
-// Загрузка данных
+function renderPagination(totalPages) {
+  const container = document.getElementById('pagination');
+  container.innerHTML = '';
+
+  if (totalPages <= 1) return;
+
+  const prev = document.createElement('button');
+  prev.textContent = '← Назад';
+  prev.disabled = currentPage === 1;
+  prev.addEventListener('click', () => {
+    if (currentPage > 1) { currentPage--; render(); }
+  });
+  container.appendChild(prev);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    if (i === currentPage) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      currentPage = i;
+      render();
+    });
+    container.appendChild(btn);
+  }
+
+  const next = document.createElement('button');
+  next.textContent = 'Вперёд →';
+  next.disabled = currentPage === totalPages;
+  next.addEventListener('click', () => {
+    if (currentPage < totalPages) { currentPage++; render(); }
+  });
+  container.appendChild(next);
+}
+
+// ===== ЗАГРУЗКА ДАННЫХ =====
 fetch('data.json?_=' + Date.now())
   .then(r => r.json())
   .then(data => {
     allData = data;
+    currentPage = 1;
     render();
   })
   .catch(() => {
@@ -403,10 +554,19 @@ fetch('data.json?_=' + Date.now())
     document.getElementById('empty').textContent = '❌ Ошибка загрузки данных.';
   });
 
-// Фильтры
-document.getElementById('searchBox').addEventListener('input', render);
-document.getElementById('priceMin').addEventListener('input', render);
-document.getElementById('priceMax').addEventListener('input', render);
+// ===== ФИЛЬТРЫ С СБРОСОМ СТРАНИЦЫ =====
+document.getElementById('searchBox').addEventListener('input', () => {
+  currentPage = 1;
+  render();
+});
+document.getElementById('priceMin').addEventListener('input', () => {
+  currentPage = 1;
+  render();
+});
+document.getElementById('priceMax').addEventListener('input', () => {
+  currentPage = 1;
+  render();
+});
 </script>
 
 </body>
