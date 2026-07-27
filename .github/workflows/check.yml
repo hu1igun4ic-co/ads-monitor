@@ -1,37 +1,45 @@
-name: Проверка объявлений
+name: Парсер квартир
 
 on:
-  schedule:
-    - cron: '0 * * * *'   # каждый час, в начале часа
-  workflow_dispatch:          # позволяет запускать вручную кнопкой
+  # Запуск вручную (для тестов)
+  workflow_dispatch:
+  
+  # Запуск по сигналу от cron-job.org
+  repository_dispatch:
+    types: [cron-job]
 
 jobs:
-  check:
+  parse:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Скачать репозиторий
         uses: actions/checkout@v4
-
+      
       - name: Установить Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
+          
       - name: Установить зависимости
-        run: pip install -r requirements.txt
-
+        run: |
+          pip install -r requirements.txt
+          
       - name: Установить браузер для Playwright
-        run: playwright install --with-deps chromium    
+        run: |
+          playwright install chromium
+          playwright install-deps
+          
       - name: Запустить парсер
-        run: python scraper.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
-      - name: Сохранить изменения обратно в репозиторий
+        run: python scraper.py
+      
+      - name: Сохранить изменения в репозиторий
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add data.json
-          git commit -m "Обновление объявлений" || echo "Нет изменений"
+          git commit -m "Автообновление $(date +'%Y-%m-%d %H:%M:%S')" || echo "Нет изменений"
           git push
