@@ -1,280 +1,361 @@
 [
   {
-    "id": "e5d4fdee7733b66a097ed0937e702296",
+    "id": "0e5c501c2f18865a99995941f23c47b5",
     "source": "ЦИАН",
-    "title": "Студия, 31,86 м², 2/25 этаж — Томская область, Томск, р-н Октябрьский, мкр. Жилмассив, тракт Иркутский, 218",
-    "price": "3 999 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/327372852/?context=4.omat7Rqz6BY.4GGYuuFbj83-FHQz_X6mecE7r8cnTvJXt2Rk7lHZPLinuGrcLPbCSv2b_7dHsXtct49aYtuz2OCruw&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "afcd8c26ce87ec84cdd017bbbbc65438",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 43 м², 23/26 этаж — Томская область, Томск, р-н Ленинский, проспект Ленина, 206В",
-    "price": "7 500 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/320099546/?context=4.T8_Z9dI5D9Y.EMZTD4PqDtb42ChgPIIx-95JBvjbBkjtB80vu_HJ2AF89VgeSTZk-rHsP5UDjPlSOocNj1IHqw7DXQ&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "e531966f8ae32d149fe135777ff61d41",
-    "source": "ЦИАН",
-    "title": "Студия, 19,1 м², 2/9 этаж — Томская область, Томск, р-н Октябрьский, улица Сергея Лазо, 16/1",
-    "price": "1 600 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331484921/?context=4.eo8GpgT2TyU.HlznnMCn75yJEj2t9Y14DnoQaUe99vz7CatPHHp_uNI-9noUqqG72vepaG6jPPTMU1csFnNr6eubGA&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "65719f1d9d5922c3257426410f2b56a8",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 47,38 м², 10/25 этаж — Томская область, Томск, р-н Октябрьский, Космо-парк ЖК",
-    "price": "5 555 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/332048745/?context=4.LcPd54I2WYE.uqah2UZ5pBGajKrKJZoBdDIZnI2CP3YR_p98grnsNmQ1K2nEjbwHXlrbM98j7yI2cknqdEuyhHH0Vw&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "e63d40245fa2223d424fbf1203f2ec95",
-    "source": "ЦИАН",
-    "title": "3-комн. квартира, 90 м², 1/10 этаж — Томская область, Томск, р-н Октябрьский, мкр. 4-й, улица Сергея Лазо, 28",
-    "price": "11 200 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331668356/?context=4.VDL_YqSnD9o.wFgMU4GgYLaJvCnsYkKGyweeux0QROMg15P0utigMmxcgL5EQblGwuanbbGtGQ26uPSFwanp5MJEsA&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "d79df09db1fb4f4bdc441d7f7801befe",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 58 м², 13/19 этаж — Томская область, Томск, р-н Октябрьский, улица Ивана Черных, 66",
-    "price": "6 500 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/332089463/?context=4.4lotGiwpkLo.Yt60u_YUYZKp62hbiRSaShhpphrMWI1IJ0QfxeYGNJHGWUpEJSXkLkAne9V1UF0gqMCHGT1cmCz-2A&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "967da9537f088e77e05bbd1e1d5cab31",
-    "source": "ЦИАН",
-    "title": "3-комн. квартира, 80,65 м², 3/10 этаж — Томская область, Томск, р-н Октябрьский, улица Пришвина, 46",
-    "price": "10 699 850 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/330630100/?context=4.abMxV-3ktuM.ljGHgOlPGHWYUYmUe7xDlSUSq8YmdmX1EEbr3FdF9ceTLcPta5MWXZJwFO2uKvUadnKd0E_7Va9A0w&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "2f73512e65dc884d46bbb47420733e4e",
-    "source": "ЦИАН",
-    "title": "3-комн. квартира, 68 м², 1/9 этаж — Томская область, Томск, р-н Советский, проспект Фрунзе, 98",
-    "price": "8 500 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/326343868/?context=4.8z-_tWEtM5M.-_Gb0H1esAyYBtp9D3TJF9mUWPGm-WNjDQ_U8YMVod3kLuFzcU7_7aJgSsFQekHVzRQZKp_1YM_9Xw&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "d35eb86e5ca3e0e487acd21af425c148",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 38 м², 1/2 этаж — Томская область, Томск, р-н Октябрьский, Большая Подгорная улица, 31",
-    "price": "3 000 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/330208039/?context=4.uEeSkXCKODI.CIZpm0i-JF3tbkogvWe-dRnof0EATNR7JGntbAbd0oTbiq6NEuyjq0ycbpur7U6mgw8OmdgugP_42A&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "25f45b2717a15ad7d21fa5903f69a071",
-    "source": "ЦИАН",
-    "title": "3-комн. квартира, 70,98 м², 2/25 этаж — Томская область, Томск, р-н Октябрьский, мкр. Жилмассив, тракт Иркутский, 218",
-    "price": "8 555 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/327372862/?context=4._QgKfkdbLyE.emVXWGaVVRiRq_gkd8cWsanohMY5YbaNGeJQPyfYckjgIWdWR2KPMntvm7hGGCf8r4nRukMKA9MAnA&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "f8b57a461355d9c3e44a9418677a5453",
-    "source": "ЦИАН",
-    "title": "3-комн. квартира, 88,5 м², 5/10 этаж — Томская область, Томск, р-н Октябрьский, мкр. Авангард, улица Сергея Лазо, 27/1",
-    "price": "9 700 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/329772342/?context=4.BiqeON2lhtg.UaD1-KJvoAusR2P3ZROujbMF2W-NGuaIGFD9aHMicPYVQ-yK7J5znTv91vD9FwWc3jxm8mAWHxrDEg&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "e1dd8dd986fc5406f7ba7c79972baa0e",
-    "source": "ЦИАН",
-    "title": "1-комн. квартира, 36 м², 9/10 этаж — Томская область, Томск, р-н Октябрьский, Новосибирская улица, 31",
+    "title": "2-комн. квартира, 43,21 м², 2/25 этаж — Томская область, Томск, р-н Октябрьский, Космо-парк ЖК",
     "price": "4 890 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331612746/?context=4.zt_anYV6bvE.v2VOATMD8mlU3twwIHTR3YaXwWuNKX8fHLHzPlMgYX80TtCHlzLOBVFJmd_7Qv-9lZk5WpENQy5GxQ&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "url": "https://tomsk.cian.ru/sale/flat/331557626/?context=4.jBOhLyvrzwc.HVxYU5D58a7zf1a2cn8uPl2rP6fJcxqY9hYVtgQV8VqgCvw4X8qBWmU-vfNgWooltkqEmiWrudrpLA&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "e645b63362f22af09ce6a2e1be2ecc58",
+    "id": "9d067e8dc25665179052d7e30dc35293",
     "source": "ЦИАН",
-    "title": "Студия, 34,26 м², 24/25 этаж — Томская область, Томск, р-н Октябрьский, Космо-парк ЖК",
-    "price": "4 100 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/332048766/?context=4.mGkb3fP3LxM.X8JqnB9i5onxmITijYOUuQ9CZbSEQF8PRNHnDMuYlmm47KQH17Lhu6veLG-h1dCUJiOJkuK3vSdVjw&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "title": "1-комн. квартира, 35,5 м², 6/11 этаж — Томская область, Томск, р-н Октябрьский, мкр. Зеленые горки, улица Энтузиастов, 41",
+    "price": "5 000 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332296608/?context=4.1YBRm16W8Hg.NvDWMQYCTpnJQZwAfuWiNKzfD49gQiCsx4F1pRD-4AQizXE_Dai8qHGFrIXLNVbnFOT1YQ_wiIHMZg&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "697009985efff556ddabe2a955c865b4",
-    "source": "ЦИАН",
-    "title": "1-комн. квартира, 49,5 м², 6/6 этаж — Томская область, Томск, р-н Октябрьский, мкр. Авангард, улица Ивана Черных, 48",
-    "price": "5 800 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331355468/?context=4.SWIXutznle4.2tLqqbxaVqhNuRANu_J9ndeC0OFqZsHduT-tj3iSi_M4JO2vWSxII4DDVbaVWCsv5m6iT2MFePUB-Q&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "e3b3b0936fc35f1e4867a6da10596b8e",
-    "source": "ЦИАН",
-    "title": "Студия, 16,3 м², 5/5 этаж — Томская область, Томск, р-н Советский, проспект Фрунзе, 230",
-    "price": "1 199 999 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331159483/?context=4.vKi8ODh_NnQ.Qwrp6ktwzO1P2l6MNB6wBiNgG_IX6KtY7G9evJ0Z_Dd90loZZ978TABktJvkxc2MX9P-jW5jZAr6kQ&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "3841281629306a4a7fabb1b8ca17ef4c",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 64,5 м², 3/23 этаж — Томская область, Томск, р-н Советский, Комсомольский проспект, 48Б",
-    "price": "9 949 350 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/304950693/?context=4.QwzJK6qGPRA.h7X6beQ7VcaHdEBF7Sy0ENWZiyDIWTU1NYAjXAK4P6v_Alk0m2Qp-S6iqKcEYXPOxVjPcaYH5ivdwA&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "f74f1f97f338f3ebf5a7dd6c0b37c31b",
-    "source": "ЦИАН",
-    "title": "3-комн. квартира, 76,9 м², 10/10 этаж — Томская область, Томск, р-н Октябрьский, мкр. Жилмассив, тракт Иркутский, 175А",
-    "price": "10 470 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/326996876/?context=4.sjbLYHhrge8.CBlZH3Kwmqtmr0SHnTLu6VlCHw1rU599aieM1Bq3ctOWhSiYBJ6JukoRZ-zUL4Fv7tUrV7xJu1yscQ&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "159d19ce0ebb42e5055b6245a8399190",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 34 м², 3/9 этаж — Томская область, Томск, р-н Ленинский, мкр. Каштак-4, улица Ференца Мюнниха, 1",
-    "price": "3 700 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/328238460/?context=4.WpLSZMB227k.LKsiW86lHO93rlrrxNnwHUbnY5zYPciL4JJr_Hgu2I7bBJ16Q9V_9LMhhi8VXRrdWsSm87Iuy9yOrQ&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "4afc9feca876fce23df6f8d2e9317a81",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 41,6 м², 16/25 этаж — Томская область, Томск, р-н Октябрьский, Космо-парк ЖК",
-    "price": "4 990 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331391727/?context=4.OOvP0wvQfyQ.SyjJ81g5vuI872UybFWWu5OceXFWW2uncrOv7j7xe8aLxRIMBv_Tx8iMa_cEDFnKnhEfVU2fP6-uhA&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "dc4582dd7610a6a54489c0395808d9b3",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 34,9 м², 6/9 этаж — Томская область, Томск, р-н Кировский, Учебная улица, 15",
-    "price": "4 400 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/330468463/?context=4.2hKrYZR3G9w.D7y4mR3Ew_pixHNjDII5Y5sQJ09D1cCOJko3agbGK2Pn_k0FWeVKNVjBov1MrXWqXQRs_fy1ZeoJjw&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "f5d9d3b97463d797a0365ca9f0b264b3",
-    "source": "ЦИАН",
-    "title": "Студия, 15 м², 1/9 этаж — Томская область, Томск, р-н Октябрьский, мкр. Солнечный, улица Клюева, 20",
-    "price": "1 650 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/332165567/?context=4.hLsQZIPL_2Q.OQY09uyHrdR4prZgEW5YxdZKThD3yuGB7jHw0GyPJFrFDUN1BrIZ-577YnwlZ4EhoZFVFDT-EWk4qg&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "32bc393fabe32cc8a4396afcd0e9bdf2",
-    "source": "ЦИАН",
-    "title": "2-комн. квартира, 61,56 м², 2/25 этаж — Томская область, Томск, р-н Октябрьский, мкр. Жилмассив, тракт Иркутский, 218",
-    "price": "7 555 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/327372853/?context=4.TG2mbWUbCo8.zDcymAadZo-J9w_LGcL6lrKHVmcb3no-Bjy0KwL38fHyajvVaAvJG4LgDEFPfBVRuI_5NeluB9sI6g&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "c6437a2e1034bc510859db5ce5518605",
+    "id": "281cc32f961d96bc2685586d56ad9ba7",
     "source": "ЦИАН",
     "title": "Квартира для воплощений идей — Томская область, Томск, р-н Ленинский, мкр. Каштак-1, улица Карла Ильмера, 21",
     "price": "5 600 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331825527/?context=4.2muv1_ZtDwo.Mufu0FhPqKyWtCTHdPcTWdSqgsy220Kj_8BZjMxSrMHI7Rl_XLsiwbuHm1rNyhpaOmxYl6oMtBTHKQ&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "url": "https://tomsk.cian.ru/sale/flat/331825527/?context=4.LeOPRl82bMw.4NbT4Ghq8dpsiZH0zgyktunwN7P9ASRODa4_8m0qTFEeUXgAAjbeCdrVGVZ5flbUfCJFWjKcAaHqVQ&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "68fb51861b9548a7f14c724091980a9f",
+    "id": "df413d9b12a1aafd30bbf46e03d13deb",
     "source": "ЦИАН",
-    "title": "1-комн. квартира, 20,6 м², 9/9 этаж — Томская область, Томск, р-н Кировский, улица Пирогова, 7",
-    "price": "4 550 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/326651725/?context=4.NC2xxuUT90A.GfK-wXcnBrF9U2oVlJNNYZ46n1hGZCCIWWl8g-3taOQiR12p3zXcEbOLZSah8-KwTbmd-jtbnQk8bw&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "title": "3-комн. квартира, 59,3 м², 1/17 этаж — Томская область, Томск, р-н Ленинский, Черемошники мкр, улица Нижне-Луговая, 93",
+    "price": "8 286 850 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/325814514/?context=4.nDzfvr-dt6M.gWCNnVNxq-BenKMVUUyPXCawKhKm2AVFI3y4CmsBb7DrS2JNObVoK02w2Ozl2QEJHGKuhvdkkqxiZA&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "44841da944f6b2ce39a603e5ac6a466f",
+    "id": "5f38103381e3c8c0452d3ffb44006d94",
     "source": "ЦИАН",
-    "title": "3-комн. квартира, 101,24 м², 1/22 этаж — Томская область, Томск, р-н Советский, Комсомольский проспект, 48",
-    "price": "14 398 200 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/332056358/?context=4.u8Yc-ag1WHA.h9JB1c4YiMGfJRWFfWHHcz7hHpi-F9P3ToRWTyHEAK2FbSRoqtwI1zhqiATTxE_DpI16YkRWSAx5Uw&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "title": "2-комн. квартира, 56,8 м², 7/10 этаж — Томская область, Томск, р-н Кировский, мкр. Мокрушинский, улица Мокрушина, 13А",
+    "price": "6 950 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/327621083/?context=4.0DvNuBouG8E.-AoOkwGCwPXIBFkVSbX8QthakZ581zDkZr4MKhLiw1pxT2SWBURtgmpS_S3ncC2O2tW9p1uTLDFsfw&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "59c41c532fdd3dd6287a86273dd78cf1",
+    "id": "6a24b00c3d4543ca137e30ee71939c6c",
     "source": "ЦИАН",
-    "title": "Продаеться Отличная Квартира — Томская область, Томск, р-н Ленинский, мкр. Каштак-1, улица 79-й Гвардейской Дивизии, 22",
-    "price": "4 800 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/328003343/?context=4.OZw1v62rGjE.nXn4JVnfLQJX5zKA9PFzGuZz8AuC0PVT87yCLCUG9gqN4-HPYZhrj6xxgoKwCy_S5QL_Bl4BRnshvg&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "title": "2-комн. квартира, 34,9 м², 6/9 этаж — Томская область, Томск, р-н Кировский, Учебная улица, 15",
+    "price": "4 400 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/330468463/?context=4.L_ceCQOZnbs.m3Rr4EumuuQ7SeILY86B4NAmCk7ChmShPrvFHtSzuNde0UU8S2y6Na7jBMbJk0-avCkvjGlowtQo5w&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "ead8f195856af5977a82c8c9f6dd3f5f",
+    "id": "bc026eaad0bbd00f89972841a09fc714",
     "source": "ЦИАН",
-    "title": "1-комн. квартира, 34,2 м², 3/10 этаж — Томская область, Томск, р-н Октябрьский, мкр. Второй Томск, улица Старо-Деповская, 1",
-    "price": "3 888 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331291379/?context=4.e4Pn9azikyU.mBn2hFOFsR8QWLJ30h2AzASnmDxD2c3LU2exxvkhGdkwouFGqPXvVfg9EGSpktRnd6hvFh0iWpbX8A&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "title": "2-комн. квартира, 38,31 м², 3/16 этаж — Томская область, Томск, р-н Советский, Енисейская улица, 35А",
+    "price": "7 780 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/327250000/?context=4.BdyLdo6-_Z8.zwJPGtg7_6MzYPBfSyx_n0rCL5pT-8mJLiOGKhG4iIzn5RXuFIbLLf4DEU9FW-tIXvkiw-8hUzbnyQ&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "1c6d9ee031108346497ea19e8d7fca95",
+    "id": "e3c4fe7c69261777ad8626c635495423",
     "source": "ЦИАН",
-    "title": "1-комн. квартира, 36,95 м², 11/25 этаж — Томская область, Томск, р-н Октябрьский, Космо-парк ЖК",
-    "price": "4 390 000 ₽",
-    "url": "https://tomsk.cian.ru/sale/flat/331391640/?context=4.5Qnsq95RV_E.3Xgs-YPWmHP3_Zc7rbYHu0Wy0kB5aQvdw4v98i0QJKyvZh8j-k0aMcB0G6ep7cHGKFgOiD7P2GtJnQ&mlSearchSessionGuid=f278ff19e7bfbe60ce05396e2be3964c",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "title": "1-комн. квартира, 19 м², 1/5 этаж — Томская область, Томск, р-н Кировский, мкр. Мокрушинский, улица Мокрушина, 12А",
+    "price": "2 700 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331807057/?context=4.BWOeYSO6VQg.88KbX4ycOuH42Q_DmYRSsbJXmkzpLfvjan_55SrmoFGW68Pl4bCqjJiMHKsZgZw7LDMZH9jeLn4AxQ&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "e58f94241737bb4826b246b309a939ba",
+    "id": "7384f39e6acf7a15a2348d7f72e9a024",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 29,3 м², 1/1 этаж — Томская область, Томск, р-н Октябрьский, Индустриальная улица, 14",
+    "price": "3 000 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331309545/?context=4.togTlUB1nKU.rJ2Scm7gf97MJBDIxFjPkCkoxx-97593eGL78eiDAqI6XVR9q3_1FQA523x-zayz4vUOBUGO5YMtpg&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "e008bfc236b803b0ae033ea9f86d8f60",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 56,21 м², 9/17 этаж — Томская область, Томск, р-н Ленинский, Черемошники мкр, улица Нижне-Луговая, 93",
+    "price": "8 570 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/325814587/?context=4.FSTb4zQnXb8.BkfMXW1uGXbK9LSvewdv5GWyqXAKYb-EM_y0Rmnp40XdMw9xOt4cbs-hD8sLgJ-l3rtzFqb8fsD6iw&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "7e74ccd908608233f4780ff1ea698786",
+    "source": "ЦИАН",
+    "title": "4-комн. квартира, 90,1 м², 1/9 этаж — Томская область, Томск, р-н Ленинский, мкр. Каштак-4, улица Ференца Мюнниха, 7",
+    "price": "10 400 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331807840/?context=4.twPEduvUJMk.K-hb959o_0IEaaCGLJTULLHCO0CBDeH8Z8aw6v9VdmRLgKauKHBD1yIThm-tP2f3k5xHWlmt8Z395Q&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "b8fba06bf752ebf56a74886be20c5cf5",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 18,2 м², 2/5 этаж — Томская область, Томск, р-н Советский, проспект Фрунзе, 126",
+    "price": "2 100 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/326764972/?context=4.OOGszlOGZ34.oY0XuR67Kn4v80qVPxjX9RvcANE3oRlfLywL23q_A-tsfsDRWSOR3Zaetser5CoT_Ja7gmSh6b9oug&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "25a3d7e7c3115c9a547ee0512f66cf17",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 24,9 м², 3/21 этаж — Томская область, Томск, р-н Октябрьский, улица Пушкина, 61/11",
+    "price": "5 834 152 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/328951033/?context=4.v972X1l44cU.7eIoCt-j2Vt2i70NYtbUrnYOoeNVaHVtN9s1B1x57lXPMVkL3DNcMb3He99IKFtk7HDvDiesedHPhw&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "79fd3f4a40c111d5d17fe9eff6c505d4",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 55 м², 1/6 этаж — Томская область, Томск, р-н Октябрьский, мкр. Телецентр, улица Больничная, 8А",
+    "price": "8 600 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/330505715/?context=4.V1QLm8FmgZA.Z8kaYO2pAqh2O4GQnYnUVm6uD6Mrq-TLCTdzuewsmErboceU6chTlTABfJ48mRCXgbSsmBFmMrWtRg&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "9bd1028c281c6b91718ad5d0f2c00b82",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 44,2 м², 8/10 этаж — Томская область, Томск, р-н Советский, проспект Фрунзе, 102",
+    "price": "6 999 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/310849581/?context=4.PGjvtJJX4bg.eEsvQQAQUmFaATVNrj8nnCH1E_0_02yTU2xTrungj4NFMIWQeLhNeDHrF0kOgDZ119jLyTRF57QpwQ&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "e45503aa5fe20e2d29143862e6945b6c",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 47,95 м², 2/25 этаж — Томская область, Томск, р-н Октябрьский, Космо-парк ЖК",
+    "price": "5 390 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331557627/?context=4.Q61k7IRtwSo.3sLebu22iXtQlW3urm2ErwSxbbRlfcjWnUqZXmk5ip3aX9VEtI009B-ehc32Hmg3qYMtMeeSIyR-rg&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "91803ae18fc13eda3ed0fef6a7a1ada9",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 68 м², 1/9 этаж — Томская область, Томск, р-н Советский, проспект Фрунзе, 98",
+    "price": "8 500 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/326343868/?context=4.HneDP9rmc8E.0cpj4WoS5zB6FbT7yd2PfDQ5Tmnzs4-mmROQEAoB3PxJf5ApDNkm0JnZOy0Qx8s0Xh1JvN6P03rUBA&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "9e325e526575067ee2e877c703d944fa",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 58 м², 13/19 этаж — Томская область, Томск, р-н Октябрьский, улица Ивана Черных, 66",
+    "price": "6 500 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332089463/?context=4.yBUqRJ3lVos.-QnpMdk_YXKz8OnWI4UB2MrmB0SX7Ovhn-10K6qOBr_sWKwsJrZSyZr7IS0fqfuDHsvMDhxT5YFWTw&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "e6fd881c2616063a7cd7e653d0f6309c",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 62,67 м², 4/17 этаж — Томская область, Томск, р-н Ленинский, Черемошники мкр, улица Нижне-Луговая, 93",
+    "price": "9 305 250 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/325814893/?context=4.J6X_RXYko1A.d0tvMwjSgRU5cMULOFIcn5UNOHbtrNf6Uvz29CQNzeJpLlr72tU6pmRNRtcyUnG_ctehkUQ0bwDL0w&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "ed9987d392a7824472eb9513fce3350e",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 90 м², 1/10 этаж — Томская область, Томск, р-н Октябрьский, мкр. 4-й, улица Сергея Лазо, 28",
+    "price": "11 200 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331668356/?context=4.rhlDbTebZS0.tOndTY_IwVRppaqlLe-B-UPgkWB-33ANtocFQf-fPvN5szR2EnhqTLffnfeMdURJBLKEQlW4goX3Yg&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "63455c2ff4370c7d9a4a579bff8e833d",
+    "source": "ЦИАН",
+    "title": "Студия, 21 м², 5/5 этаж — Томская область, Томск, р-н Кировский, мкр. Преображенский, улица Дзержинского, 36",
+    "price": "2 100 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/330898579/?context=4.QVw28-BBvDw.EE8_RIXvxjW5qFXUbj3a33888cyxgbj1UT7T_wCcASsK0x_K69YaABpJArf2vetuh28tjnLJGihbxw&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "134e44d9df0dcccb44f7cd30718a6ff2",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 61,45 м², 4/10 этаж — Томская область, Томск, р-н Октябрьский, улица Пришвина, 43",
+    "price": "8 479 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/324480061/?context=4.N00C7Bx6XR8.01Q-l_j2kXoAQMz48zoXRams5gwD1QsBlg-o1SEz29bcJE9IWrz3l5_LSZ0_5uUrha2gI3aKjnF3XQ&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "950f60d6bfe6ac6e69be81c9144f6505",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 76,8 м², 1/10 этаж — Томская область, Томск, р-н Октябрьский, мкр. Жилмассив, тракт Иркутский, 175А",
+    "price": "8 190 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/332253419/?context=4.XNlAEmDDefk.lOFG-mclSUcOrt-iXMKhQVwftXrji8BUTpeO0KcMiIKsYxdShpEaU_0l0OGg1QW7-Ppt7zT4rP4PCQ&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "7d136280c81c466521acd18a846f39bb",
+    "source": "ЦИАН",
+    "title": "1-комн. квартира, 18,9 м², 2/5 этаж — Томская область, Томск, р-н Кировский, мкр. Преображенский, улица Дзержинского, 36",
+    "price": "1 750 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/331474230/?context=4.BtWleWGxhVs.85asBsAkkwaR7xzvptD5R7kh2WybWl6tteDod0oPyxM87GpbVqJlX0ASLWHM3MT1hdlUXJHfiNfuzw&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "ab03bb523df6ef44ee1087546328a4d4",
+    "source": "ЦИАН",
+    "title": "Студия, 25,74 м², 25/25 этаж — Томская область, Томск, р-н Октябрьский, мкр. Жилмассив, тракт Иркутский, 218",
+    "price": "4 950 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/327556651/?context=4.jLR1VlUFilU._9cZ2H49_VcKCZ4B4NP94MLxvC9WUyPLjnua_V3FbcHJDlGYTbdNomE5e_FxsMc2MUjL-F1YZ2iG_g&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "f935792b5adf9a07db11e99066a654dd",
+    "source": "ЦИАН",
+    "title": "3-комн. квартира, 88,5 м², 5/10 этаж — Томская область, Томск, р-н Октябрьский, мкр. Авангард, улица Сергея Лазо, 27/1",
+    "price": "9 700 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/329772342/?context=4.ynIvsdirrpo.2AtfshXzCNZFpUjx1wKbpkEtFvzlM3C0urXmFBZh1nUPuHsLhpEllc1e0Lxsjn74lC3hsoTnVf1QxA&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "d434ddb21557d344e3a4609c2df04693",
+    "source": "ЦИАН",
+    "title": "4-комн. квартира, 110 м², 15/19 этаж — Томская область, Томск, р-н Советский, мкр. Уютный, улица Маяковского, 20",
+    "price": "13 500 000 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/325287675/?context=4.-uhaaCyWiCg.a8wBsWW4glFPdmahX3HybrGb0V96P0kXc8OV01omnF1V4P-q2TQTEWPuRSX-3NOm-lkv36dQjDlWCg&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "e3d419d8d450a6560eaed34b7fbeb580",
+    "source": "ЦИАН",
+    "title": "2-комн. квартира, 38,41 м², 7/17 этаж — Томская область, Томск, р-н Ленинский, Черемошники мкр, улица Нижне-Луговая, 93",
+    "price": "6 113 250 ₽",
+    "url": "https://tomsk.cian.ru/sale/flat/325814914/?context=4.OUcq782Ksek.h1EECqnUJsQK6cP4gmQHTF4SIS2NSIwBmmbKpz6Wjl86gd4-xDQm3nC8ms7CBoF3NBBMTv44mP7VqA&mlSearchSessionGuid=c8dde436ba5c7a63c495aa6d5b806a2c",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "ba4827be52612a3a563944c40b409f98",
     "source": "RU09",
-    "title": "Продам3-комнатную квартиру, 64 м2 — пос. Кисловка, Марины Цветаевой (мкр. Северный) 32",
+    "title": "Продам3-комнатные апартаменты, 175.7 м2 — Белинского 48",
     "price": "",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5162114",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5181076",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "f321e4ac112320f0d3b53b4f474d6381",
+    "id": "d38b1aaf8f66cd79e91a11d4e29504d9",
     "source": "RU09",
-    "title": "Продам1-комнатную квартиру, 39.3 м2 — Тверская 3",
+    "title": "Продам1-комнатную секционку, 16 м2 — Ленина проспект 160",
     "price": "",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5203822",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5201010",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
     "also_on": []
   },
   {
-    "id": "ceb4944401152c45ad2249fdd19d04c0",
+    "id": "131c9618ddef2f64ecae645b324f1383",
     "source": "RU09",
-    "title": "Продам5-комнатную квартиру, 115 м2 — пос. Зональная Станция, Молодежная 5",
+    "title": "Продам2-комнатную квартиру, 50.4 м2 — пос. Сосновка, Сосновая-16 2",
     "price": "",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5022234",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5195426",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "169949cb0541de30a09104a71181fe28",
+    "source": "RU09",
+    "title": "Продам1-комнатную квартиру, 26.8 м2 — Алтайская 132",
+    "price": "",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5202386",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "726818efaec53bda1f5f748e99bb3e3a",
+    "source": "RU09",
+    "title": "Продам1-комнатную квартиру, 30.1 м2 — Тверская 51",
+    "price": "",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5189778",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "85dd42302680b7e24efdf8d1e030537a",
+    "source": "RU09",
+    "title": "2-комнатную квартиру — Ленина проспект 206в",
+    "price": "7 500 тыс.руб.",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5201592",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "912678dbb6adcab574d44957364432e9",
+    "source": "RU09",
+    "title": "1-комнатную секционку — 79-й Гвардейской Дивизии 1",
+    "price": "1 450 тыс.руб.",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5205042",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "86e533dade4884a3a94a9754b2f04ee8",
+    "source": "RU09",
+    "title": "1-комнатную квартиру — пос. Светлый, пос. Светлый 15",
+    "price": "3 200 тыс.руб.",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5196468",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "b9bb6518c5ef1afaf4cfe933a365ebf7",
+    "source": "RU09",
+    "title": "3-комнатную квартиру — Артема 3",
+    "price": "6 500 тыс.руб.",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5010132",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "aedf0b66b6b3d5dc84a307dc420a1ed1",
+    "source": "RU09",
+    "title": "1-комнатную гостинку — Промышленный переулок 9",
+    "price": "2 400 тыс.руб.",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5206548",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "aff50ba818b0e716ed3bf9be10bb5468",
+    "source": "RU09",
+    "title": "2-комнатную квартиру — Иркутский тракт 204",
+    "price": "5 950 тыс.руб.",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5206542",
+    "first_seen": "2026-07-27T14:32:21.431312+00:00",
+    "also_on": []
+  },
+  {
+    "id": "765e11181a99ff392a53a52845e4be39",
+    "source": "RU09",
+    "title": "Продам2-комнатную квартиру, 48.1 м2 — Пушкина 61/2",
+    "price": "",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5182918",
     "first_seen": "2026-07-26T21:40:17.964106+00:00",
     "also_on": []
   },
@@ -288,30 +369,12 @@
     "also_on": []
   },
   {
-    "id": "dec3a60a82b5fc4fb7d50e2eeaf315de",
+    "id": "ceb4944401152c45ad2249fdd19d04c0",
     "source": "RU09",
-    "title": "Продам2-комнатную квартиру, 58.9 м2 — пос. Зональная Станция, Виталия Грачева 3",
+    "title": "Продам5-комнатную квартиру, 115 м2 — пос. Зональная Станция, Молодежная 5",
     "price": "",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5204254",
+    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5022234",
     "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "765e11181a99ff392a53a52845e4be39",
-    "source": "RU09",
-    "title": "Продам2-комнатную квартиру, 48.1 м2 — Пушкина 61/2",
-    "price": "",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5182918",
-    "first_seen": "2026-07-26T21:40:17.964106+00:00",
-    "also_on": []
-  },
-  {
-    "id": "8856a79c0ad73da56d00ac51e44d0690",
-    "source": "RU09",
-    "title": "Продам2-комнатную квартиру, 35 м2 — Герасименко 3/9",
-    "price": "",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5193162",
-    "first_seen": "2026-07-26T18:46:35.318971+00:00",
     "also_on": []
   },
   {
@@ -324,325 +387,19 @@
     "also_on": []
   },
   {
-    "id": "d8bef765561af0c29ece7e94ffa9da15",
-    "source": "RU09",
-    "title": "Продам3-комнатную квартиру, 84.1 м2 — Иркутский тракт 193а",
-    "price": "",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5168554",
-    "first_seen": "2026-07-26T18:46:35.318971+00:00",
-    "also_on": []
-  },
-  {
-    "id": "49f6381c87b25631e4b18beddfe42bed",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 81.1  м² , 10/11 эт вторичка, панельный, 2009 г. 10/11 этаж Томск, Советский р-н,",
-    "price": "12 244 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/260078/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "a6458c8e7272fe6c09c69da6ade95cc6",
-    "source": "Сибдом",
-    "title": "5-комн. квартира , 143.9  м² , 3/6 эт вторичка, кирпичный 3/6 этаж Томск, Советский р-н, Фрунзе пр-к",
-    "price": "13 675 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259295/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "b308197b5c2aea43a5782960fa889260",
-    "source": "Сибдом",
-    "title": "Пентхаус, 162  м² , 3/3 эт вторичка, кирпичный, 2017 г. 3/3 этаж Томск, Советский р-н, Академический",
-    "price": "12 700 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/257951/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "569dfde857b0f88c45976bb55342e4f9",
-    "source": "Сибдом",
-    "title": "2-комн. квартира , 42  м² , 1/5 эт вторичка, кирпичный, 1970 г. 1/5 этаж Томск, Советский р-н, Новго",
-    "price": "4 500 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/260120/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "7eb15fa615dfd0081d0a8f25e53a6d5d",
-    "source": "Сибдом",
-    "title": "1-комн. квартира , 30.7  м² , 2/5 эт вторичка, кирпичный, 1970 г. 2/5 этаж Томск, Ленинский р-н, Чер",
-    "price": "4 300 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/260110/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "6efc8f7b363f2f3c64a8eca54c9db744",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 59  м² , 9/9 эт вторичка 9/9 этаж Томск, Кировский р-н, Советская ул, 114 7 600 0",
-    "price": "7 600 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/257997/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "d5cfa6bf7351d6f7ef0295f8ae21dcb1",
-    "source": "Сибдом",
-    "title": "Студия, 12  м² , 1/5 эт вторичка, панельный 1/5 этаж Томск, Ленинский р-н, Каштак-3 мкр-н, Ференца М",
-    "price": "1 450 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/255957/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "2f0bd118b26def68bd70a63d53b1d313",
-    "source": "Сибдом",
-    "title": "2-комн. квартира , 52.6  м² , 13/17 эт вторичка 13/17 этаж Томск, Октябрьский р-н, Подсолнухи мкр-н,",
-    "price": "5 600 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259261/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "9109b69413491729ad54dfbea2e381e6",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 65.7  м² , 7/9 эт вторичка, панельный 7/9 этаж Томск, Ленинский р-н, Каштак-2 мкр",
-    "price": "6 499 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259147/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "1fcc4050f2572d2cb214d0623d1ca237",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 84.8  м² , 2/6 эт вторичка 2/6 этаж Томск, Ленинский р-н, Черемошники мкр-н, Проф",
-    "price": "8 500 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259051/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "b749787964612e86b8868a632e7ced38",
-    "source": "Сибдом",
-    "title": "4-комн. квартира , 82.2  м² , 6/10 эт вторичка 6/10 этаж Томск, Кировский р-н, Мокрушинский мкр-н, М",
-    "price": "10 000 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259016/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "bfbbd27944fe98ec3cfe2b92445f2592",
-    "source": "Сибдом",
-    "title": "Застройщик ХИММЕТАЛЛ 2-комн. квартира , 54.89  м² , 9/16 эт ЖК Парапарк, 2 очередь, дом 1 панельный,",
-    "price": "11 220 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/257399/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "00af87d4b7c2bf0031db74999da1819f",
-    "source": "Сибдом",
-    "title": "Застройщик ХИММЕТАЛЛ 4-комн. квартира , 79.49  м² , 2-3/16 эт ЖК Парапарк, 2 очередь, дом 1 панельны",
-    "price": "13 100 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/257534/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "de529d036a94e4c19ac48085840f1e26",
-    "source": "Сибдом",
-    "title": "2-комн. квартира , 78.7  м² , 2/5 эт вторичка, кирпичный 2/5 этаж Томск, Советский р-н, Академгородо",
-    "price": "10 300 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/260183/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "d022f40ab579c9030d59432ef5584878",
-    "source": "Сибдом",
-    "title": "Студия, 12.1  м² , 3/5 эт вторичка, кирпичный 3/5 этаж Томск, Октябрьский р-н, Транспортная ул, 4 2 ",
-    "price": "2 100 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/252426/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "b5de62a6bf7fecc93394b27e2e0d4abf",
-    "source": "Сибдом",
-    "title": "1-комн. квартира , 32.4  м² , 1/2 эт вторичка, пеноблок 1/2 этаж Томск, Октябрьский р-н, Ближний пос",
-    "price": "2 800 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259285/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "d6739f0e5feb42a90a1dbcbd11565890",
-    "source": "Сибдом",
-    "title": "1-комн. квартира , 30.2  м² , 5/5 эт вторичка, кирпичный 5/5 этаж Томск, Советский р-н, Фрунзе пр-кт",
-    "price": "4 100 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/252683/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "12f925a204c1e7111143f2bfca4caea5",
-    "source": "Сибдом",
-    "title": "4-комн. квартира , 74.8  м² , 4/5 эт вторичка 4/5 этаж Томск, Советский р-н, Академгородок мкр-н, Ва",
-    "price": "10 950 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259266/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "e6e7dbdd15c2923dfc9a11d41fd6718f",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 60.3  м² , 7/17 эт ЖК Южные Ворота, Титова дом 6а панельный, сдача —1 кв 2021 7/1",
-    "price": "6 870 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/260133/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "c556a9e3c48f38ca5bba3778189d95e3",
-    "source": "Сибдом",
-    "title": "2-комн. квартира , 39.3  м² , 8/10 эт вторичка 8/10 этаж Томск, Октябрьский р-н, Ивановского ул, 24 ",
-    "price": "4 400 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259243/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "713d1ed7194359f860ef54428201aefe",
-    "source": "Сибдом",
-    "title": "2-комн. квартира , 58.9  м² , 5/17 эт вторичка 5/17 этаж Томск, Советский р-н, Сибирская ул, 66 10,2",
-    "price": "10 200 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259303/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "abb7dc8e8e335b2495d7788bc5a8ff05",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 75.7  м² , 4/4 эт вторичка, кирпичный 4/4 этаж Томская область, Северск, Пригород",
-    "price": "3 800 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/255933/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "2d4eeaf4b413bd8b09be81ec9c9a4cae",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 83.9  м² , 3/3 эт вторичка 3/3 этаж Томск, Октябрьский р-н, Телецентр мкр-н, Пушк",
-    "price": "5 950 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/257224/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "392861e6762c8fb49ce2bbbc7b2a5428",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 51  м² , 5/5 эт вторичка, кирпичный 5/5 этаж Томск, Кировский р-н, Мокрушинский м",
-    "price": "5 400 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/252686/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "684e7fa2dcc9969ef649731632fa2933",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 69.2  м² , 2/10 эт вторичка, панельный 2/10 этаж Томск, Октябрьский р-н, Содружес",
-    "price": "6 300 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259035/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "9447547e0dffbe127980a07cc3f36272",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 82.3  м² , 3/9 эт ЖК Ай-Петри вторичка, кирпичный, сдан декабрь 2022 3/9 этаж Том",
-    "price": "12 500 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/258131/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "4872d1a39512409a1e10b86b95ddc33d",
-    "source": "Сибдом",
-    "title": "3-комн. квартира , 75  м² , 2/2 эт вторичка, кирпичный 2/2 этаж Томская область, Северск, Пригород, ",
-    "price": "4 450 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/257460/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "cc0d4285c1fbcb7e764a111c6fc4ae65",
-    "source": "Сибдом",
-    "title": "2-комн. квартира , 71.6  м² , 14/18 эт ЖК Сибирская, дом 80 вторичка, кирпичный, сдан ноябрь 2017 14",
-    "price": "12 500 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/254588/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "e6522e7bcc301db7d90f8c498ef2760f",
-    "source": "Сибдом",
-    "title": "Комната, 16.5  м² , 6/9 эт вторичка 6/9 этаж Томск, Октябрьский р-н, Сергея Лазо ул, 16/1 1 300 000 ",
-    "price": "1 300 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/259199/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
-    "id": "ee8fb02166c3406dbf9518c29445f75f",
-    "source": "Сибдом",
-    "title": "2-комн. квартира , 62.2  м² , 7/10 эт вторичка, кирпичный 7/10 этаж Томск, Советский р-н, Никитина у",
-    "price": "10 500 000 ₽",
-    "url": "https://tomsk.sibdom.ru/stickers/view/260186/",
-    "first_seen": "2026-07-26T18:09:56.789227+00:00",
-    "also_on": []
-  },
-  {
     "id": "a82dded603a086c7605fc7c69f6a9492",
     "source": "RU09",
-    "title": "2-комнатную квартиру — пос. Кисловка, Василия Кандинского  (мкр. Левобережный Лайф) 6/1",
-    "price": "11 850 тыс.руб.",
+    "title": "Продам2-комнатную квартиру, 60 м2 — пос. Кисловка, Василия Кандинского (мкр. Левобережный Лайф) 6/1",
+    "price": "",
     "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5193018",
     "first_seen": "2026-07-26T17:20:27.539046+00:00",
     "also_on": []
   },
   {
-    "id": "91841e173e1417499fcdea1ddeee36e7",
-    "source": "RU09",
-    "title": "1-комнатную квартиру — Лебедева 111",
-    "price": "4 999 тыс.руб.",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5206344",
-    "first_seen": "2026-07-26T17:20:27.539046+00:00",
-    "also_on": []
-  },
-  {
-    "id": "1da7a8c3eb6353066b6a52c9cf2e32e3",
-    "source": "RU09",
-    "title": "2-комнатную квартиру — Трамвайная 3",
-    "price": "4 999 тыс.руб.",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5206338",
-    "first_seen": "2026-07-26T17:20:27.539046+00:00",
-    "also_on": []
-  },
-  {
-    "id": "72318ef26bb1658af8b1a6499e3e7f83",
-    "source": "RU09",
-    "title": "2-комнатную квартиру — Украинская 15",
-    "price": "7 250 тыс.руб.",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5203498",
-    "first_seen": "2026-07-26T13:29:15.851367+00:00",
-    "also_on": []
-  },
-  {
     "id": "79e6e469ed8d14f3ccd51ffac7620abb",
     "source": "RU09",
-    "title": "Продам3-комнатную квартиру, 90 м2 — Льва Толстого 38б",
-    "price": "",
+    "title": "3-комнатную квартиру — Льва Толстого 38б",
+    "price": "9 850 тыс.руб.",
     "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5061478",
     "first_seen": "2026-07-26T13:18:55.982213+00:00",
     "also_on": []
@@ -653,42 +410,6 @@
     "title": "1-комнатную квартиру — Олега Кошевого 66",
     "price": "4 350 тыс.руб.",
     "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5202114",
-    "first_seen": "2026-07-26T13:18:55.982213+00:00",
-    "also_on": []
-  },
-  {
-    "id": "02fde338fc3ca9253bfe1fcc42caead3",
-    "source": "RU09",
-    "title": "1-комнатную квартиру — Аркадия Иванова 8  (Карпова 1)",
-    "price": "6 800 тыс.руб.",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5199870",
-    "first_seen": "2026-07-26T13:18:55.982213+00:00",
-    "also_on": []
-  },
-  {
-    "id": "d27c5879074013f026d585c54c96f3cb",
-    "source": "RU09",
-    "title": "3-комнатную квартиру — Сергея Лазо 27/3",
-    "price": "11 690 тыс.руб.",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5205168",
-    "first_seen": "2026-07-26T13:18:55.982213+00:00",
-    "also_on": []
-  },
-  {
-    "id": "2c977664bfbc3d0ef0b131958d75d98f",
-    "source": "RU09",
-    "title": "1-комнатную квартиру — Иркутский тракт 17",
-    "price": "5 100 тыс.руб.",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5203870",
-    "first_seen": "2026-07-26T13:18:55.982213+00:00",
-    "also_on": []
-  },
-  {
-    "id": "6cce7fc449fe6ff9de9d89dcd98ec869",
-    "source": "RU09",
-    "title": "2-комнатную квартиру — Ивана Черных 66",
-    "price": "6 100 тыс.руб.",
-    "url": "https://www.tomsk.ru09.ru/realty?subaction=detail&id=5204882",
     "first_seen": "2026-07-26T13:18:55.982213+00:00",
     "also_on": []
   }
